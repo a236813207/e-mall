@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * @description
  */
 @SpringBootApplication
-@MapperScan("com.wwbetter.website.mapper")
+@MapperScan("com.ken.mall.mapper")
 @EnableJpaRepositories(repositoryBaseClass = GenericRepositoryImpl.class,
         basePackages = {"com.ken.mall.dao"},
         enableDefaultTransactions = false)

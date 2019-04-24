@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ken.mall.mapper.rbac.PrivilegeMapper">
+    <select id="findAllManagers" resultType="com.ken.mall.entity.rbac.SysUser">
+        select * from mk_user
+        <where>
+            <if test="userName != null and userName != ''">
+                and user_name like #{userName}
+            </if>
+            <if test="roleId != null">
+                and EXISTS(select 1 from mk_user_role where mk_user_role.user_id = mk_user.id and
+                role_id= #{roleId})
+            </if>
+        </where>
+    </select>
+
+    <select id="findAllRolesByUserId" resultType="com.ken.mall.entity.rbac.SysRole">
+        select c.*  from mk_user a join mk_user_role b on a.id = b.user_id
+            join mk_role c on c.id = b.role_id
+            where a.id=#{userId}
+    </select>
+
+    <select id="findPermissionsByUserId" resultType="com.ken.mall.entity.rbac.SysResource">
+        select d.*  from mk_user a
+        join mk_user_role b on id = b.user_id
+        join mk_role_resource c on c.role_id = b.role_id
+        join mk_resource d on c.resource_id = d.id
+        where a.id=#{userId}
+        order by d.parent_ids desc,orders
+    </select>
+
+    <select id="findRolePermissionsByRoleId" resultType="com.ken.mall.entity.rbac.SysResource">
+        select d.id,d.orders,d.name,d.type,
+          d.url,d.permission,d.icon from mk_role_resource c join mk_resource d on c.resource_id = d.id
+        where c.role_id=#{roleId} order by d.parent_ids desc,orders
+    </select>
+
+    <select id="findJinguRolesByPermission" resultType="java.util.Map">
+        SELECT DISTINCT a.* FROM sys_role a JOIN sys_role_resource b ON a.`id`=b.`role_id`
+        JOIN sys_resource c ON c.id=b.`resource_id` WHERE c.`permission` = #{_parameter}
+    </select>
+</mapper>

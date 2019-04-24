@@ -186,7 +186,7 @@ public class ShiroConfig {
         registrationBean.setFilter(proxy);
         registrationBean.setAsyncSupported(true);
         registrationBean.setName("shiroFilter");
-        registrationBean.addUrlPatterns("/*");
+        registrationBean.addUrlPatterns("/admin/*");
         return registrationBean;
     }
 }
