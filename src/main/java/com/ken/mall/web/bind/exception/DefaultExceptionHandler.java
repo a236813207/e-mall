@@ -1,9 +1,9 @@
 package com.ken.mall.web.bind.exception;
 
+import com.ken.mall.pojo.exception.BizException;
+import com.ken.mall.pojo.exception.codes.BizCodeFace;
+import com.ken.mall.pojo.exception.codes.ErrorCode;
 import com.ken.mall.web.bind.response.ResBody;
-import com.wwbetter.service.pojo.exception.BizException;
-import com.wwbetter.service.pojo.exception.codes.BizCodeFace;
-import com.wwbetter.service.pojo.exception.codes.ErrorCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

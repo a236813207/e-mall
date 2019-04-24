@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.ken.mall.interceptor.LogInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -23,7 +25,7 @@ import java.util.TimeZone;
  */
 @Configuration
 @ConditionalOnWebApplication
-public class WebMvcConfig extends WebMvcAutoConfiguration {
+public class WebMvcConfig implements WebMvcConfigurer {
 
     //WebMvcConfigurerAdapter
     @Bean
@@ -43,5 +45,15 @@ public class WebMvcConfig extends WebMvcAutoConfiguration {
         //
         objectMapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
         return mappingJackson2HttpMessageConverter;
+    }
+
+    @Bean
+    public LogInterceptor logInterceptor(){
+        return new LogInterceptor();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(logInterceptor()).addPathPatterns("/admin/**");
     }
 }

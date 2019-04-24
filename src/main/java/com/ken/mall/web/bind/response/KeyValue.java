@@ -1,9 +1,9 @@
 package com.ken.mall.web.bind.response;
 
 /**
- * com.xfbetter.web.common.bind.response
- * author Daniel
- * 2018/1/16.
+ * @author Ken
+ * @date 2019/4/22
+ * @description
  */
 public class KeyValue {
     private String key;

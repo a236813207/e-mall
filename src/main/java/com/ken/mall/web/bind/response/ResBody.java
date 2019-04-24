@@ -1,13 +1,13 @@
 package com.ken.mall.web.bind.response;
 
 
-import com.wwbetter.service.pojo.base.BizCodeEnum;
-import com.wwbetter.service.pojo.exception.codes.ErrorCode;
+import com.ken.mall.pojo.base.BizCodeEnum;
+import com.ken.mall.pojo.exception.codes.ErrorCode;
 
 /**
- * com.xfbetter.web.common.bind.response
- * author Daniel
- * 2017/12/6.
+ * @author Ken
+ * @date 2019/4/22
+ * @description
  */
 public class ResBody {
     private Integer code;

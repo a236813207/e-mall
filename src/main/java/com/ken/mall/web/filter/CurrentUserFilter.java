@@ -11,17 +11,21 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 每次请求设置currentUser
- * com.xfbetter.web.filter
- * author Daniel
- * 2017/12/19.
+ * @author Ken
+ * @date 2019/4/22
+ * @description
  */
 public class CurrentUserFilter extends PathMatchingFilter {
 
     @Override
     protected boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpSession session = req.getSession();
-        request.setAttribute(Constants.CURRENT_USER, session.getAttribute(AdminConst.MEMBER_SESSION_ATTR_KEY));
-        return true;
+        //后台请求时设置currentUser
+        if (req.getRequestURI().startsWith("/admin")) {
+            HttpSession session = req.getSession();
+            request.setAttribute(Constants.CURRENT_USER, session.getAttribute(AdminConst.MEMBER_SESSION_ATTR_KEY));
+            return true;
+        }
+        return false;
     }
 }

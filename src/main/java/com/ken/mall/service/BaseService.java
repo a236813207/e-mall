@@ -1,19 +1,19 @@
 package com.ken.mall.service;
 
 
-import com.wwbetter.service.pojo.exception.BizException;
-import com.wwbetter.service.pojo.search.Filter;
-import com.wwbetter.service.pojo.search.OrderBo;
-import com.wwbetter.service.pojo.search.PageBo;
-import com.wwbetter.service.pojo.search.PageRequestBo;
+import com.ken.mall.pojo.exception.BizException;
+import com.ken.mall.pojo.search.Filter;
+import com.ken.mall.pojo.search.OrderBo;
+import com.ken.mall.pojo.search.PageBo;
+import com.ken.mall.pojo.search.PageRequestBo;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * com.xfbetter.service.face
- * author Daniel
- * 2017/12/5.
+ * @author Ken
+ * @date 2019/4/22
+ * @description
  */
 public interface BaseService<T, ID extends Serializable> {
     /**

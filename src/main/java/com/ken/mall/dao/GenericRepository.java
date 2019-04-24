@@ -1,7 +1,6 @@
 package com.ken.mall.dao;
 
-
-import com.wwbetter.service.pojo.search.Filter;
+import com.ken.mall.pojo.search.Filter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

@@ -2,11 +2,11 @@ package com.ken.mall.service.iml;
 
 import com.ken.mall.dao.GenericRepository;
 import com.ken.mall.entity.AbstractEntity;
+import com.ken.mall.pojo.search.Filter;
+import com.ken.mall.pojo.search.OrderBo;
+import com.ken.mall.pojo.search.PageBo;
+import com.ken.mall.pojo.search.PageRequestBo;
 import com.ken.mall.service.BaseService;
-import com.wwbetter.service.pojo.search.Filter;
-import com.wwbetter.service.pojo.search.OrderBo;
-import com.wwbetter.service.pojo.search.PageBo;
-import com.wwbetter.service.pojo.search.PageRequestBo;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
@@ -30,9 +30,9 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * com.xfbetter.service.face.iml
- * author Daniel
- * 2017/12/5.
+ * @author Ken
+ * @date 2019/4/22
+ * @description
  */
 @Transactional
 public abstract class BaseServiceIml<T, ID extends Serializable> implements BaseService<T, ID> {

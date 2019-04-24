@@ -3,7 +3,7 @@ package com.ken.mall.dao;
 import com.ken.mall.entity.CascadeEntity;
 import com.ken.mall.entity.LogicDeleteable;
 import com.ken.mall.entity.OrderEntity;
-import com.wwbetter.service.pojo.search.Filter;
+import com.ken.mall.pojo.search.Filter;
 import org.dom4j.tree.AbstractEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,11 +1,13 @@
 package com.ken.mall.web.converter;
 
-import com.wwbetter.service.pojo.base.PairsEnum;
+import com.ken.mall.pojo.base.PairsEnum;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 
 /**
- * Created by Daniel on 2017/5/12.
+ * @author Ken
+ * @date 2019/4/22
+ * @description
  */
 public class StringToPairsEnumConverterFactory implements ConverterFactory<String, Enum> {
     @Override

@@ -1,8 +1,8 @@
 package com.ken.mall.config;
 
-
 import com.ken.mall.service.SysUserService;
 import com.ken.mall.web.auth.UserRealm;
+import com.ken.mall.web.auth.credentials.UserCredentialMatcher;
 import com.ken.mall.web.filter.AuthFilter;
 import com.ken.mall.web.filter.CurrentUserFilter;
 import org.apache.shiro.SecurityUtils;
@@ -58,6 +58,7 @@ public class ShiroConfig {
     @Bean
     public Realm shiroRealm() {
         UserRealm realm = new UserRealm();
+        realm.setCredentialsMatcher(new UserCredentialMatcher());
         return realm;
     }
 
@@ -146,11 +147,11 @@ public class ShiroConfig {
                                                          MappingJackson2HttpMessageConverter jsonConverter , SysUserService sysUserService) {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         bean.setSecurityManager(securityManager);
-        bean.setLoginUrl("/login");
+        bean.setLoginUrl("/admin/login");
         AuthFilter filter = new AuthFilter();
         filter.setUsernameParam("username");
         filter.setPasswordParam("password");
-        filter.setLoginUrl("/login");
+        filter.setLoginUrl("/admin/login");
         filter.setSuccessUrl("/");
         filter.setJsonConverter(jsonConverter);
         filter.setSysUserService(sysUserService);
@@ -162,21 +163,19 @@ public class ShiroConfig {
         return bean;
     }
 
-
     private void setFilterChainDefinitions(ShiroFilterFactoryBean factoryBean) {
         Map<String, String> filterChainDefinitions = new LinkedHashMap<>();
         filterChainDefinitions.put("/swagger-ui.html","anon");
         filterChainDefinitions.put("/swagger-resources","anon");
         filterChainDefinitions.put("/v2/api-docs","anon");
-        filterChainDefinitions.put("/logout", "anon");
-        filterChainDefinitions.put("/login", "authc");
+        filterChainDefinitions.put("/admin/logout", "anon");
+        filterChainDefinitions.put("/admin/login", "authc");
         filterChainDefinitions.put("/admin/**", "authc,currentUser");
         filterChainDefinitions.put("/**", "anon");
         filterChainDefinitions.put("/job/**","anon");
 
         factoryBean.setFilterChainDefinitionMap(filterChainDefinitions);
     }
-
 
     @Bean
     @Order(1)

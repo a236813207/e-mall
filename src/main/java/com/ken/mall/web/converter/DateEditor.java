@@ -9,9 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * com.xfbetter.web.common.converter
- * author Daniel
- * 2017/12/21.
+ * @author Ken
+ * @date 2019/4/22
+ * @description
  */
 public class DateEditor extends PropertyEditorSupport {
     private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";

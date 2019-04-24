@@ -1,10 +1,10 @@
 package com.ken.mall.web.filter;
 
 import com.ken.mall.constant.AdminConst;
-import com.ken.mall.entity.sys.SysUser;
+import com.ken.mall.entity.rbac.SysUser;
+import com.ken.mall.pojo.exception.codes.ErrorCode;
 import com.ken.mall.service.SysUserService;
 import com.ken.mall.web.bind.response.ResBody;
-import com.wwbetter.service.pojo.exception.codes.ErrorCode;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
@@ -19,9 +19,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * com.xfbetter.web.filter
- * author Daniel
- * 2017/12/19.
+ * @author Ken
+ * @date 2019/4/22
+ * @description
  */
 public class AuthFilter extends FormAuthenticationFilter {
 

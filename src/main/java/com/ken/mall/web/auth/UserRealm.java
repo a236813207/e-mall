@@ -1,47 +1,46 @@
 package com.ken.mall.web.auth;
 
-import com.ken.mall.entity.sys.SysUser;
+import com.ken.mall.entity.rbac.SysUser;
 import com.ken.mall.service.SysUserService;
-import com.ken.mall.utils.password.PasswordHelper;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.realm.Realm;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class UserRealm implements Realm {
+public class UserRealm extends AuthorizingRealm {
 
     @Autowired
-    private SysUserService sysUserService;
+    private SysUserService userService;
 
     @Override
-    public String getName() {
-        return "simple realm";
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        String username = (String)principals.getPrimaryPrincipal();
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        authorizationInfo.setRoles(userService.findRoleNames(username));
+        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        return authorizationInfo;
     }
 
     @Override
-    public boolean supports(AuthenticationToken token) {
-        return true;
-    }
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
-    @Override
-    public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String username = (String) token.getPrincipal();
-        String password = new String((char[]) token.getCredentials()); //得到密码
+        String username = (String)token.getPrincipal();
 
-        SysUser user = sysUserService.findByUsername(username);
+        SysUser user = userService.findByUsername(username);
 
-        if (user == null) {
+        if(user == null) {
             throw new UnknownAccountException("账号不存在");//没找到帐号
         }
-        if (!PasswordHelper.verifyPassword(password, user.getPassword(), user.getSalt())) {
-            throw new IncorrectCredentialsException(); //如果密码错误
-        }
-        return new SimpleAuthenticationInfo(
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUserName(), //用户名
                 user.getPassword(), //密码
-                ByteSource.Util.bytes(user.getSalt()),
+                ByteSource.Util.bytes(user.getSalt()),//salt=username+salt
                 getName()  //realm name
         );
+        return authenticationInfo;
     }
 }

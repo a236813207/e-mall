@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * author Daniel
+ * @author Ken
+ * @date 2019/4/24
+ * @description 跨域设置
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
