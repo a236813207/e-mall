@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -43,14 +44,20 @@ public class LoginController {
     @GetMapping("/login")
     @ApiOperation(value = "登录页面")
     public ModelAndView login() {
-        logger.info("login=====");
         ModelAndView model = new ModelAndView();
-        model.addObject("test","123");
-        model.setViewName("login");
+        Subject subject = SecurityUtils.getSubject();
+        if (subject != null && subject.isAuthenticated()) {
+            //SysUser manager = (SysUser) subject.getSession().getAttribute(AdminConst.MEMBER_SESSION_ATTR_KEY);
+            //ManagerInfoResp rs = new ManagerInfoResp(manager.getUserName(), manager.getId());
+            model.setViewName("redirect:/admin/main");
+        }else {
+            model.setViewName("login");
+        }
         return model;
     }
 
     @PostMapping("/login")
+    @ResponseBody
     @ApiOperation(value = "登录", response = ResBody.class)
     @ApiImplicitParams({
             @ApiImplicitParam(value = "用户名", name = "username", paramType = "form", defaultValue = "admin"),
@@ -74,5 +81,15 @@ public class LoginController {
             throw new BizException(BizCodeFace.createBizCode(ErrorCode.ACCOUNT_NO_EXISTIS));
         }
         throw new BizException(BizCodeFace.createBizCode(ErrorCode.AUTH_FAIL));
+    }
+
+    @GetMapping("/main")
+    @ApiOperation(value = "首页")
+    public ModelAndView main() {
+        logger.info("main=====");
+        ModelAndView model = new ModelAndView();
+        model.addObject("test","123");
+        model.setViewName("main");
+        return model;
     }
 }

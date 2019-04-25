@@ -11,6 +11,8 @@
 				<include>WEB-INF/classes/*</include>
 				<include>WEB-INF/classes/com/**</include>
 				<include>WEB-INF/lib/**</include>
+				<include>WEB-INF/views/**</include>
+				<include>WEB-INF/static/**</include>
 			</includes>
 			<excludes>
 				<exclude>WEB-INF/lib/tomcat-*.jar</exclude>

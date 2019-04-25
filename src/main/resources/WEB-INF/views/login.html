@@ -1,10 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理系统 - 登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="${ctxPath}/img/favicon.ico">
+    <link href="${ctxPath}/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/css/animate.css" rel="stylesheet">
+    <link href="${ctxPath}/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/js/plugins/validform/css/validform.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
 </head>
-<body>
-321${test}
+
+<body class="gray-bg">
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
+        <div>
+            <h2 class="logo-name">E - M a l l</h2>
+        </div>
+        <h3>欢迎使用 后台管理系统</h3>
+
+        <form id="form1" class="m-t" role="form" action="${ctxPath}/admin/login" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="用户名" required="required" name="username"
+                       size="20" maxlength="20">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="密码" required="required" name="password"
+                       size="20" maxlength="20" >
+            </div>
+            <!--<div class="form-group input-group m-b">
+                <input type="text" class="form-control" placeholder="验证码" required="required" name="validcode">
+                <div class="input-group-addon">
+                    <img title="点击更换图片" id="verImg" height="20" style="cursor: pointer;" border="0" src="${ctxPath}/login/validcode?Math.random();" onClick="changeImg();"/>
+                    <span><a href="javascript:changeImg();">看不清?</a></span>
+                </div>
+            </div>-->
+            <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+
+            <p class="text-muted text-center">
+                <a href="#"><small>忘记密码了？</small></a> | <a href="#"></a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script type="text/javascript" src="${ctxPath}/js/jquery.min.js?v=2.1.4"></script>
+<script type="text/javascript" src="${ctxPath}/js/bootstrap.min.js?v=3.3.6"></script>
+<script type="text/javascript" src="${ctxPath}/js/plugins/validform/js/validform.js"></script>
+<script type="text/javascript" src="${ctxPath}/js/plugins/layer/mobile/layer.js?v=2.0.0"></script>
+<script>
+    /*function changeImg() {
+        var img = document.getElementById("verImg");
+        img.src = "${ctxPath}/login/validcode?" + Math.random();
+    }*/
+
+    $(function(){
+        $("#form1").Validform({
+            tiptype:function(msg,o,cssctl){
+                if(!o.obj.is('form')){
+                    if(o.type!=2){  //状态为2时，表示通过验证，成功就不提示
+                        if(o.obj.parent().find(".Validform_checktip").length==0){
+                            o.obj.parent().append("<span class='Validform_checktip' />");
+                            o.obj.parent().next().find(".Validform_checktip").remove();
+                        }
+                        var objtip = o.obj.parent().find(".Validform_checktip");
+                        cssctl(objtip,o.type);
+                        objtip.text(msg);
+                    }else{
+                        o.obj.parent().find(".Validform_checktip").remove();
+                    }
+                }
+            },
+            ajaxPost:true,
+            callback:function(data){
+                if(data.code==2){
+                    location.href="${ctxPath}/admin/main";
+                }else{
+                    layer.open({
+                        content: data.info==null?"登录失败":data.info,
+                        btn: '我知道了'
+                    });
+                    //changeImg();
+                }
+            }
+        });
+    });
+
+</script>
 </body>
+
 </html>

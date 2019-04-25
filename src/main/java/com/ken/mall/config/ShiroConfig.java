@@ -173,6 +173,7 @@ public class ShiroConfig {
         filterChainDefinitions.put("/admin/**", "authc,currentUser");
         filterChainDefinitions.put("/**", "anon");
         filterChainDefinitions.put("/job/**","anon");
+        filterChainDefinitions.put("/static/*", "anon");
 
         factoryBean.setFilterChainDefinitionMap(filterChainDefinitions);
     }
