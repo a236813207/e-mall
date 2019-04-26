@@ -15,6 +15,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.session.SessionException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.slf4j.Logger;
@@ -84,12 +85,32 @@ public class LoginController {
     }
 
     @GetMapping("/main")
-    @ApiOperation(value = "首页")
+    @ApiOperation(value = "主页")
     public ModelAndView main() {
-        logger.info("main=====");
         ModelAndView model = new ModelAndView();
-        model.addObject("test","123");
         model.setViewName("main");
+        return model;
+    }
+
+    @GetMapping("/index")
+    @ApiOperation(value = "首页")
+    public ModelAndView index() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("index");
+        return model;
+    }
+
+    @GetMapping("/logout")
+    @ApiOperation(value = "退出登录")
+    public ModelAndView logout() {
+        Subject subject = SecurityUtils.getSubject();
+        try {
+            subject.logout();
+        } catch (SessionException ise) {
+            logger.debug("Encountered session exception during logout.  This can generally safely be ignored.", ise);
+        }
+        ModelAndView model = new ModelAndView();
+        model.setViewName("login");
         return model;
     }
 }

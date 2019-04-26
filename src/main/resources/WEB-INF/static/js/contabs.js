@@ -1,3 +1,9 @@
+/*
+ *
+ *   H+ - 后台主题UI框架
+ *   version 4.9
+ *
+*/
 
 $(function () {
     //计算元素集合的总宽度
@@ -122,7 +128,6 @@ $(function () {
                     // 显示tab对应的内容区
                     $('.J_mainContent .J_iframe').each(function () {
                         if ($(this).data('id') == dataUrl) {
-                        	$(this).attr('src',  dataUrl);
                             $(this).show().siblings('.J_iframe').hide();
                             return false;
                         }
@@ -141,16 +146,7 @@ $(function () {
             // 添加选项卡对应的iframe
             var str1 = '<iframe class="J_iframe" name="iframe' + dataIndex + '" width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataUrl + '" seamless></iframe>';
             $('.J_mainContent').find('iframe.J_iframe').hide().parents('.J_mainContent').append(str1);
-            $('.J_mainContent').find('iframe.J_iframe').load(function() {
-            	$('.J_mainContent').find('iframe.J_iframe').contents().find("body").css("cursor", "pointer");
-	            $('.J_mainContent').find('iframe.J_iframe').contents().find("body").bind("click touchend",function(e){
-	            	if(e.target.tagName=="DIV"||e.target.tagName=="BODY"){  // 点击div或body区域就隐藏菜单栏
-						if(!$('#mainbody').hasClass("mini-navbar")){
-				    		$('#mainbody').addClass("mini-navbar");
-						}
-					}
-				});
-            });
+
             //显示loading提示
 //            var loading = layer.load();
 //

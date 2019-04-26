@@ -1,0 +1,66 @@
+<nav id="navbar" class="navbar-default navbar-static-side" role="navigation">
+    <div class="nav-close"><i class="fa fa-times-circle"></i></div>
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element text-center">
+                	<%
+		        		var headImg = proxy.headImg!;
+		        		if(isEmpty(headImg)){
+		        			headImg = ctxPath+"/images/user.png";
+		        		}
+		        	%>
+                    <span><img alt="image" class="img-circle" src="${headImg}" width="80" height="80"/></span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                        	<span class="text-muted text-xs block">${userName!"管理员"}<b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                       <!--  <li><a class="J_menuItem" href="#">修改头像</a></li>
+                        <li class="divider"></li> -->
+                        <li><a class="J_menuItem" href="${ctxPath}/admin/userinfo">个人资料</a></li>
+                        <li class="divider"></li>
+                        <li><a href="${ctxPath}/admin/userinfo/password">修改密码</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">E-Mall</div>
+            </li>
+            <li>
+                <a href="${ctxPath}/admin/main" title="主页">
+                	<i class="fa fa-home"></i> 
+                	<span class="nav-label">主页</span>
+                	<span class="fa arrow"></span>
+                </a>
+            </li>
+            <li>
+                <a class="J_menuItem" href="${ctxPath}/playerrecharge" title="订单管理">
+                    <i class="fa fa fa-rmb"></i>
+                    <span class="nav-label">订单管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+            </li>
+            <li>
+                <a class="J_menuItem" href="${ctxPath}/playermanage" title="商品管理">
+                    <i class="fa fa fa-user"></i>
+                    <span class="nav-label">商品管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+            </li>
+            <li>
+                <a class="J_menuItem" href="${ctxPath}/roomcardrecord" title="会员管理">
+                    <i class="fa fa fa-list-ol"></i>
+                    <span class="nav-label">会员管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+            </li>
+            <li>
+                <a class="J_menuItem" href="${ctxPath}/admin/setting" title="系统设置">
+                    <i class="fa fa fa-magnet"></i>
+                    <span class="nav-label">系统设置</span>
+                    <span class="fa arrow"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

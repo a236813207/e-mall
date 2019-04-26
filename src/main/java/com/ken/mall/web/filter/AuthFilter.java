@@ -16,6 +16,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -57,11 +58,19 @@ public class AuthFilter extends FormAuthenticationFilter {
             if (log.isTraceEnabled()) {
                 log.trace("权限不足");
             }
-            HttpServletResponse servletResponse = WebUtils.toHttp(response);
-            servletResponse.setCharacterEncoding("utf-8");
-            servletResponse.setHeader("Content-type", "application/json;charset=UTF-8");
-            String out = jsonConverter.getObjectMapper().writeValueAsString(ResBody.custom(ErrorCode.PERMISSION_EXPIRED.getCode(), ErrorCode.PERMISSION_EXPIRED.getMessage()));
-            servletResponse.getWriter().write(out);
+            HttpServletRequest servletRequest = WebUtils.toHttp(request);
+            //如果是ajax请求，返回401未授权
+            if (servletRequest.getHeader("X-Requested-With") != null && servletRequest.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {
+                HttpServletResponse servletResponse = WebUtils.toHttp(response);
+                servletResponse.setCharacterEncoding("utf-8");
+                servletResponse.setHeader("Content-type", "application/json;charset=UTF-8");
+                String out = jsonConverter.getObjectMapper().writeValueAsString(ResBody.custom(ErrorCode.PERMISSION_EXPIRED.getCode(), ErrorCode.PERMISSION_EXPIRED.getMessage()));
+                servletResponse.getWriter().write(out);
+                //servletResponse.sendError(HttpStatus.UNAUTHORIZED.value());
+            } else {
+                redirectToLogin(request, response);
+            }
+
             return false;
         }
     }

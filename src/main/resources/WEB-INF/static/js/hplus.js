@@ -1,3 +1,10 @@
+/*
+ *
+ *   H+ - 后台主题UI框架
+ *   version 4.9
+ *
+*/
+
 //自定义js
 
 //公共配置
@@ -99,8 +106,6 @@ $(document).ready(function () {
 
     //ios浏览器兼容性处理
     if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-    	$('#content-main').css('-webkit-overflow-scrolling', 'touch');
-    	$('#content-main').css('overflow-x', 'auto!important');
         $('#content-main').css('overflow-y', 'auto');
     }
 

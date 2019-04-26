@@ -13,6 +13,7 @@
     <link href="${ctxPath}/css/animate.css" rel="stylesheet">
     <link href="${ctxPath}/css/style.css?v=4.1.0" rel="stylesheet">
     <link href="${ctxPath}/js/plugins/validform/css/validform.css" rel="stylesheet">
+    <link href="${ctxPath}/js/plugins/layui/css/layui.css?v=2.4.5" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -25,9 +26,9 @@
         <div>
             <h2 class="logo-name">E - M a l l</h2>
         </div>
-        <h3>欢迎使用 后台管理系统</h3>
+        <h3 class="m-b">欢迎使用 后台管理系统</h3>
 
-        <form id="form1" class="m-t" role="form" action="${ctxPath}/admin/login" method="post">
+        <form id="form1" class="layui-form mt" role="form" action="">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="用户名" required="required" name="username"
                        size="20" maxlength="20">
@@ -43,10 +44,10 @@
                     <span><a href="javascript:changeImg();">看不清?</a></span>
                 </div>
             </div>-->
-            <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+            <button lay-filter="login" lay-submit class="btn btn-primary block full-width m-b">登 录</button>
 
             <p class="text-muted text-center">
-                <a href="#"><small>忘记密码了？</small></a> | <a href="#"></a>
+                <a href="#"><small>忘记密码了？</small></a> | <a href="#"> 注册</a>
             </p>
         </form>
     </div>
@@ -54,16 +55,36 @@
 
 <!-- 全局js -->
 <script type="text/javascript" src="${ctxPath}/js/jquery.min.js?v=2.1.4"></script>
+<script type="text/javascript" src="${ctxPath}/js/plugins/layui/layui.js?v=2.4.5"></script>
 <script type="text/javascript" src="${ctxPath}/js/bootstrap.min.js?v=3.3.6"></script>
 <script type="text/javascript" src="${ctxPath}/js/plugins/validform/js/validform.js"></script>
-<script type="text/javascript" src="${ctxPath}/js/plugins/layer/mobile/layer.js?v=2.0.0"></script>
+<script type="text/javascript" src="${ctxPath}/js/common.js"></script>
 <script>
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(login)', function(data){
+            var fields = data.field;
+            util.post("${ctxPath}/admin/login", fields, function(res){
+                if(res.code==2){
+                    location.href="${ctxPath}/admin/main";
+                }else{
+                    layer.open({
+                        content: data.info==null?"登录失败":data.info,
+                        btn: '我知道了'
+                    });
+                }
+            });
+            return false;
+        });
+    });
     /*function changeImg() {
         var img = document.getElementById("verImg");
         img.src = "${ctxPath}/login/validcode?" + Math.random();
     }*/
 
-    $(function(){
+    /*$(function(){
         $("#form1").Validform({
             tiptype:function(msg,o,cssctl){
                 if(!o.obj.is('form')){
@@ -93,7 +114,7 @@
                 }
             }
         });
-    });
+    });*/
 
 </script>
 </body>
