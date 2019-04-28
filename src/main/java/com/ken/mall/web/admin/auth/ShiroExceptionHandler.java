@@ -1,4 +1,4 @@
-package com.ken.mall.web.auth;
+package com.ken.mall.web.admin.auth;
 
 import com.ken.mall.pojo.exception.codes.ErrorCode;
 import com.ken.mall.web.bind.response.ResBody;

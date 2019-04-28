@@ -1,4 +1,4 @@
-package com.ken.mall.web.auth.credentials;
+package com.ken.mall.web.admin.auth.credentials;
 
 import com.ken.mall.utils.password.PasswordHelper;
 import org.apache.shiro.authc.AuthenticationInfo;

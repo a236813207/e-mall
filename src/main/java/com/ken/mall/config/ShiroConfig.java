@@ -1,8 +1,8 @@
 package com.ken.mall.config;
 
 import com.ken.mall.service.SysUserService;
-import com.ken.mall.web.auth.UserRealm;
-import com.ken.mall.web.auth.credentials.UserCredentialMatcher;
+import com.ken.mall.web.admin.auth.UserRealm;
+import com.ken.mall.web.admin.auth.credentials.UserCredentialMatcher;
 import com.ken.mall.web.filter.AuthFilter;
 import com.ken.mall.web.filter.CurrentUserFilter;
 import org.apache.shiro.SecurityUtils;
