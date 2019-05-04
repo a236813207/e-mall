@@ -5,6 +5,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 @SpringBootApplication
 @MapperScan("com.ken.mall.mapper")
+@PropertySource("classpath:config.properties")
 @EnableJpaRepositories(repositoryBaseClass = GenericRepositoryImpl.class,
         basePackages = {"com.ken.mall.dao"},
         enableDefaultTransactions = false)

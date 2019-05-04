@@ -36,7 +36,7 @@ public class UserRealm extends AuthorizingRealm {
             throw new UnknownAccountException("账号不存在");//没找到帐号
         }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                user.getUserName(), //用户名
+                user, //用户
                 user.getPassword(), //密码
                 ByteSource.Util.bytes(user.getSalt()),//salt=username+salt
                 getName()  //realm name

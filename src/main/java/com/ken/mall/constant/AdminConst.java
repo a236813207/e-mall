@@ -7,6 +7,6 @@ package com.ken.mall.constant;
  */
 public class AdminConst {
 
-    public static final String MEMBER_SESSION_ATTR_KEY = "USER_SESSION_KEY";
+    public static final String SYS_SESSION_ATTR_KEY = "USER_SESSION_KEY";
 
 }

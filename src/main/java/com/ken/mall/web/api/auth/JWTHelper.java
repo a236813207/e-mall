@@ -9,6 +9,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ken.mall.pojo.exception.BizException;
 import com.ken.mall.pojo.exception.codes.BizCodeFace;
 import com.ken.mall.pojo.exception.codes.ErrorCode;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -17,17 +18,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * com.xfbetter.web.wx.mp.auth
- * author Daniel
- * 2018/1/6.
+ * @author Ken
+ * @date 2019/4/28
+ * @description
  */
 public class JWTHelper {
 
     private static String secret = "XX#$%()(#*!()!KL<><sdys9seBs dsddsgdsddddd>?N<:{LWPW";
 
+    @Value("${wx.ma.token.expiry}")
+    private static long expiry;
+
+    public static String sign(long userId, String tokenType) {
+        return sign(userId, tokenType, expiry);
+    }
+
     public static String sign(long userId, String tokenType, long expirySeconds){
         LocalDateTime now = LocalDateTime.now();
-        // 过期时间7个小时
+        // 过期时间
         Date expiresDate = Date.from(now.plusSeconds(expirySeconds).atZone(ZoneId.systemDefault()).toInstant());
 
         // header Map
@@ -37,6 +45,15 @@ public class JWTHelper {
 
         // build token
         // param backups {iss:Service, aud:APP}
+        /*
+        iss: jwt签发者
+        sub: jwt所面向的用户
+        aud: 接收jwt的一方
+        exp: jwt的过期时间，这个过期时间必须要大于签发时间
+        nbf: 定义在什么时间之前，该jwt都是不可用的.
+        iat: jwt的签发时间
+        jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。
+        */
         try {
             String token = JWT.create().withHeader(map) // header
                     .withClaim("iss", "Service") // payload
@@ -61,5 +78,22 @@ public class JWTHelper {
             throw new BizException(BizCodeFace.createBizCode(ErrorCode.PARAM_ERROR).message("非法请求"));
         }
         return jwt.getClaims();
+    }
+
+    public static void main(String[] args){
+        String token = sign(10, "wx_app", 600);
+        System.out.println(token);
+        Map<String, Claim> decodeToken = unSign(token);
+        System.out.println(decodeToken);
+        Claim aud = decodeToken.get("aud");
+        System.out.println("aud:"+aud.asString());
+        Claim iss = decodeToken.get("iss");
+        System.out.println("iss:"+iss.asString());
+        Claim exp = decodeToken.get("exp");
+        System.out.println("exp:"+exp.asDate());
+        Claim userId = decodeToken.get("userId");
+        System.out.println("userId:"+userId.asLong());
+        Claim iat = decodeToken.get("iat");
+        System.out.println("iat:"+iat.asDate());
     }
 }

@@ -1,6 +1,5 @@
 package com.ken.mall.web.filter;
 
-import com.ken.mall.constant.AdminConst;
 import com.ken.mall.entity.rbac.SysUser;
 import com.ken.mall.pojo.exception.codes.ErrorCode;
 import com.ken.mall.service.SysUserService;
@@ -59,7 +58,7 @@ public class AuthFilter extends FormAuthenticationFilter {
                 log.trace("权限不足");
             }
             HttpServletRequest servletRequest = WebUtils.toHttp(request);
-            //如果是ajax请求，返回401未授权
+            //如果是ajax请求，返回未授权
             if (servletRequest.getHeader("X-Requested-With") != null && servletRequest.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {
                 HttpServletResponse servletResponse = WebUtils.toHttp(response);
                 servletResponse.setCharacterEncoding("utf-8");
@@ -81,21 +80,13 @@ public class AuthFilter extends FormAuthenticationFilter {
             if (isLoginSubmission(request, response)) {
                 String username = getUsername(request);
                 Subject subject = getSubject(request, response);
-                String logined = (String) subject.getPrincipal();
-                if (logined != null && username != null && !logined.equals(username)) {
+                SysUser sysUser = (SysUser) subject.getPrincipal();
+                if (sysUser != null && username != null && !sysUser.getUserName().equals(username)) {
                     subject.logout();
                 }
             }
         }
         return super.isAccessAllowed(request, response, mappedValue);
-    }
-
-    @Override
-    protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request, ServletResponse response) throws Exception {
-        SysUser manager = sysUserService.findByUsername(token.getPrincipal() + "");
-        //HttpServletRequest servletRequest = WebUtils.toHttp(request);
-        subject.getSession().setAttribute(AdminConst.MEMBER_SESSION_ATTR_KEY, manager);
-        return true;
     }
 
     @Override

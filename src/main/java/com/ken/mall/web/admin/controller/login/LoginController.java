@@ -6,6 +6,7 @@ import com.ken.mall.pojo.exception.BizException;
 import com.ken.mall.pojo.exception.codes.BizCodeFace;
 import com.ken.mall.pojo.exception.codes.ErrorCode;
 import com.ken.mall.web.admin.controller.login.resp.ManagerInfoResp;
+import com.ken.mall.web.bind.annotation.CurrentUser;
 import com.ken.mall.web.bind.response.ResBody;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -67,7 +68,7 @@ public class LoginController {
     public ResBody login(@ApiIgnore HttpServletRequest request) {
         Subject subject = SecurityUtils.getSubject();
         if (subject != null && subject.isAuthenticated()) {
-            SysUser manager = (SysUser) subject.getSession().getAttribute(AdminConst.MEMBER_SESSION_ATTR_KEY);
+            SysUser manager = (SysUser) subject.getSession().getAttribute(AdminConst.SYS_SESSION_ATTR_KEY);
             ManagerInfoResp rs = new ManagerInfoResp(manager.getUserName(), manager.getId());
             return ResBody.success(rs);
         }
@@ -87,6 +88,8 @@ public class LoginController {
     @GetMapping("/main")
     @ApiOperation(value = "主页")
     public ModelAndView main() {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        System.out.println(user.getUserName());
         ModelAndView model = new ModelAndView();
         model.setViewName("main");
         return model;

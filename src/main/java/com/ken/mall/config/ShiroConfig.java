@@ -4,7 +4,6 @@ import com.ken.mall.service.SysUserService;
 import com.ken.mall.web.admin.auth.UserRealm;
 import com.ken.mall.web.admin.auth.credentials.UserCredentialMatcher;
 import com.ken.mall.web.filter.AuthFilter;
-import com.ken.mall.web.filter.CurrentUserFilter;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.DefaultSecurityManager;
@@ -157,7 +156,6 @@ public class ShiroConfig {
         filter.setSysUserService(sysUserService);
         Map<String, Filter> filters = new HashMap<>();
         filters.put("authc", filter);
-        filters.put("currentUser", new CurrentUserFilter());
         bean.setFilters(filters);
         setFilterChainDefinitions(bean);
         return bean;

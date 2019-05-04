@@ -3,8 +3,9 @@ package com.ken.mall.web.api.auth.token;
 import java.io.Serializable;
 
 /**
- * @author Daniel
- * 2015/10/26
+ * @author Ken
+ * @date 2019/4/28
+ * @description
  */
 public class TokenModel implements Serializable {
     /*private Token token;
