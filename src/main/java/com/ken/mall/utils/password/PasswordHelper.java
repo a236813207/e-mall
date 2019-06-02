@@ -48,4 +48,12 @@ public class PasswordHelper {
         String s1 = encodePassword(password, salt);
         return s1.equals(secret);
     }
+
+    public static void main(String[] args) {
+        String salt = generateSalt();
+        String password = encodePassword("123456", salt);
+
+        System.out.println(salt);
+        System.out.println(password);
+    }
 }

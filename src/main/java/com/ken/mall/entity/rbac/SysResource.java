@@ -3,6 +3,8 @@ package com.ken.mall.entity.rbac;
 
 import com.ken.mall.entity.CascadeEntity;
 import com.ken.mall.entity.rbac.enum_.ResourceType;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -12,29 +14,16 @@ import javax.persistence.*;
  * @description
  */
 @Entity
-@Table(name = "mk_resource")
+@Table(name = "sys_resource")
+@Getter
+@Setter
 public class SysResource extends CascadeEntity {
     //资源类型
-    @Column(nullable = false)
+    @Column(nullable = false, length = 16)
     @Enumerated(EnumType.STRING)
     private ResourceType type = ResourceType.menu;
     //权限标识符
-    @Column(nullable = false)
+    @Column(nullable = false, length = 32)
     private String permission;
 
-    public ResourceType getType() {
-        return type;
-    }
-
-    public void setType(ResourceType type) {
-        this.type = type;
-    }
-
-    public String getPermission() {
-        return permission;
-    }
-
-    public void setPermission(String permission) {
-        this.permission = permission;
-    }
 }

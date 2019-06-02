@@ -11,8 +11,8 @@ import javax.persistence.*;
 public abstract class BaseEntity extends AbstractEntity<Long>{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", length = 20, insertable = false, updatable = false)
     private Long id;
 
     public Long getId() {

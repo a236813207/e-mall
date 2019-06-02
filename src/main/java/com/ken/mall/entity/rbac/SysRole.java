@@ -1,6 +1,8 @@
 package com.ken.mall.entity.rbac;
 
 import com.ken.mall.entity.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,29 +14,15 @@ import javax.persistence.Table;
  * @description
  */
 @Entity
-@Table(name = "mk_role")
+@Table(name = "sys_role")
+@Getter
+@Setter
 public class SysRole extends BaseEntity {
 
+    @Column(unique = true, nullable = false, length = 32)
     private String role;
 
+    @Column(nullable = false, length = 32)
     private String description;
-
-    @Column(unique = true)
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    @Column(nullable = false)
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
 }

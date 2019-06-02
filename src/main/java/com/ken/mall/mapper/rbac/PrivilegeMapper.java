@@ -22,12 +22,12 @@ public interface PrivilegeMapper {
     /**
      * 查询用户的所有角色
      */
-    List<SysRole> findAllRolesByUserId(Integer userId);
+    List<SysRole> findAllRolesByUserId(Long userId);
 
     /**
      * 查询用户的资源权限
      */
-    List<SysResource> findPermissionsByUserId(Integer userId);
+    List<SysResource> findPermissionsByUserId(Long userId);
 
     /**
      * 查询角色的资源权限

@@ -167,8 +167,7 @@ public class ShiroConfig {
         filterChainDefinitions.put("/swagger-resources","anon");
         filterChainDefinitions.put("/v2/api-docs","anon");
         filterChainDefinitions.put("/admin/logout", "anon");
-        filterChainDefinitions.put("/admin/login", "authc");
-        filterChainDefinitions.put("/admin/**", "authc,currentUser");
+        filterChainDefinitions.put("/admin/**", "authc");
         filterChainDefinitions.put("/**", "anon");
         filterChainDefinitions.put("/job/**","anon");
         filterChainDefinitions.put("/static/*", "anon");

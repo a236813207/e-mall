@@ -2,14 +2,14 @@ package com.ken.mall.web.admin.controller.login.resp;
 
 /**
  * com.xfbetter.web.api.login.resp
- * author Daniel
- * 2017/12/14.
+ * author ken
+ * 2018/04/24.
  */
 public class ManagerInfoResp {
     private String username;
-    private Integer id;
+    private Long id;
 
-    public ManagerInfoResp(String username, Integer id) {
+    public ManagerInfoResp(String username, Long id) {
         this.username = username;
         this.id = id;
     }
@@ -23,11 +23,11 @@ public class ManagerInfoResp {
         this.username = username;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

@@ -19,6 +19,7 @@ public abstract class CascadeEntity extends OrderEntity {
     private Long parentId;
     @Column(length = 1000)
     private String parentIds;
+    @Column(nullable = false, length = 64)
     private String name;
     private String icon;
     private String url;

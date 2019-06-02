@@ -8,6 +8,6 @@ import com.ken.mall.entity.rbac.SysUser;
  * @date 2019/4/22
  * @description
  */
-public interface SysUserDao extends GenericRepository<SysUser,Integer> {
+public interface SysUserDao extends GenericRepository<SysUser, Long> {
     SysUser findByUserName(String username);
 }

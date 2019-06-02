@@ -11,7 +11,12 @@ import java.util.Objects;
  * @description
  */
 public class SysUserRolePK implements Serializable {
+    @Id
+    @Column(nullable = false, insertable = true, updatable = true)
     private Integer userId;
+
+    @Id
+    @Column(nullable = false, insertable = true, updatable = true)
     private Long roleId;
 
     public SysUserRolePK() {
@@ -19,26 +24,6 @@ public class SysUserRolePK implements Serializable {
 
     public SysUserRolePK(Integer userId, Long roleId) {
         this.userId = userId;
-        this.roleId = roleId;
-    }
-
-    @Column(nullable = false, insertable = true, updatable = true)
-    @Id
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    @Column(nullable = false, insertable = true, updatable = true)
-    @Id
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 

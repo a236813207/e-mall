@@ -1,5 +1,8 @@
 package com.ken.mall.entity.rbac;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -10,29 +13,16 @@ import java.util.Objects;
  * @date 2019/4/24
  * @description
  */
+@Getter
+@Setter
 public class SysRoleResourcePK implements Serializable {
+    @Id
+    @Column(nullable = false, insertable = true, updatable = true)
     private Long roleId;
+
+    @Id
+    @Column(nullable = false, insertable = true, updatable = true)
     private Long resourceId;
-
-    @Column(nullable = false, insertable = true, updatable = true)
-    @Id
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
-    @Column(nullable = false, insertable = true, updatable = true)
-    @Id
-    public Long getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(Long resourceId) {
-        this.resourceId = resourceId;
-    }
 
     @Override
     public boolean equals(Object o) {

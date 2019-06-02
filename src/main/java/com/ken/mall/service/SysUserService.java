@@ -16,7 +16,7 @@ import java.util.Set;
  * @date 2019/4/22
  * @description
  */
-public interface SysUserService extends BaseService<SysUser, Integer> {
+public interface SysUserService extends BaseService<SysUser, Long> {
 
     String PASSWORD = "123456";
 
@@ -74,7 +74,7 @@ public interface SysUserService extends BaseService<SysUser, Integer> {
      * @param managerId   用户ID
      * @param roleIds     角色Id
      */
-    void assignRoles(Integer managerId, ArrayList<Long> roleIds) throws BizException;
+    void assignRoles(Long managerId, ArrayList<Long> roleIds) throws BizException;
 
     /**
      * 创建新管理员
@@ -89,7 +89,7 @@ public interface SysUserService extends BaseService<SysUser, Integer> {
      * @param id  用户ID
      * @throws BizException
      */
-    void resetPassword(Integer id) throws  BizException;
+    void resetPassword(Long id) throws  BizException;
 
     void update(SysUser sysUser, Long roleId) throws BizException;
 }

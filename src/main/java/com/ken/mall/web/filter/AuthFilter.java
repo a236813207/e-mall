@@ -1,5 +1,6 @@
 package com.ken.mall.web.filter;
 
+import com.ken.mall.constant.AdminConst;
 import com.ken.mall.entity.rbac.SysUser;
 import com.ken.mall.pojo.exception.codes.ErrorCode;
 import com.ken.mall.service.SysUserService;
@@ -87,6 +88,15 @@ public class AuthFilter extends FormAuthenticationFilter {
             }
         }
         return super.isAccessAllowed(request, response, mappedValue);
+    }
+
+
+    @Override
+    protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request, ServletResponse response) throws Exception {
+        SysUser manager = sysUserService.findByUsername(token.getPrincipal() + "");
+        //HttpServletRequest servletRequest = WebUtils.toHttp(request);
+        subject.getSession().setAttribute(AdminConst.SYS_SESSION_ATTR_KEY, manager);
+        return true;
     }
 
     @Override

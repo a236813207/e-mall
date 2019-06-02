@@ -1,11 +1,10 @@
 package com.ken.mall.entity.rbac;
 
-import com.ken.mall.entity.AbstractEntity;
+import com.ken.mall.entity.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Ken
@@ -13,47 +12,18 @@ import javax.persistence.Table;
  * @description
  */
 @Entity
-@Table(name = "mk_user")
-public class SysUser extends AbstractEntity<Integer> {
-    @Id
-    @GeneratedValue
-    private Integer id;
+@Table(name = "sys_user")
+@Getter
+@Setter
+public class SysUser extends BaseEntity {
+
+    @Column(name = "user_name", nullable = false, length = 32)
     private String userName;
+
+    @Column(nullable = false, length = 128)
     private String password;
+
+    @Column(nullable = false, length = 128)
     private String salt;
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-
-    @Override
-    public Integer getId() {
-        return this.id;
-    }
-
-    @Override
-    public void setId(Integer integer) {
-        this.id = integer;
-    }
 }

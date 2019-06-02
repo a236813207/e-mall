@@ -16,7 +16,7 @@ public interface SysUserRoleDao extends GenericRepository<SysUserRole,SysUserRol
      * 删除用户的角色信息
      * @param userId    用户Id
      */
-    void deleteByUserId(Integer userId);
+    void deleteByUserId(Long userId);
 
     List<SysUserRole> findByRoleId(Long roleId);
 }

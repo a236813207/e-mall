@@ -6,7 +6,6 @@ import com.ken.mall.pojo.exception.BizException;
 import com.ken.mall.pojo.exception.codes.BizCodeFace;
 import com.ken.mall.pojo.exception.codes.ErrorCode;
 import com.ken.mall.web.admin.controller.login.resp.ManagerInfoResp;
-import com.ken.mall.web.bind.annotation.CurrentUser;
 import com.ken.mall.web.bind.response.ResBody;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

@@ -1,9 +1,9 @@
 package com.ken.mall.entity.rbac;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,29 +13,19 @@ import java.util.Objects;
  * @description
  */
 @Entity
-@Table(name = "mk_role_resource")
+@Table(name = "sys_role_resource")
 @IdClass(SysRoleResourcePK.class)
+@Getter
+@Setter
 public class SysRoleResource implements Serializable{
+
+    @Id
+    @Column(name = "role_id", nullable = false, length = 20)
     private Long roleId;
+
+    @Id
+    @Column(name = "resource_id", nullable = false, length = 20)
     private Long resourceId;
-
-    @Id
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
-    @Id
-    public Long getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(Long resourceId) {
-        this.resourceId = resourceId;
-    }
 
     @Override
     public boolean equals(Object o) {

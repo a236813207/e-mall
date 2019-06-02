@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
  * @date 2019/4/22
  * @description
  */
-@Service("sysUserServiceIml")
+@Service
 @Transactional
-public class SysUserServiceIml extends BaseServiceIml<SysUser, Integer> implements SysUserService {
+public class SysUserServiceIml extends BaseServiceIml<SysUser, Long> implements SysUserService {
 
     @Autowired
     private SysUserRoleDao userRoleDao;
@@ -78,9 +78,9 @@ public class SysUserServiceIml extends BaseServiceIml<SysUser, Integer> implemen
     }
 
     @Override
-    public void delete(Integer integer) {
-        this.userRoleDao.deleteByUserId(integer);
-        super.delete(integer);
+    public void delete(Long id) {
+        this.userRoleDao.deleteByUserId(id);
+        super.delete(id);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class SysUserServiceIml extends BaseServiceIml<SysUser, Integer> implemen
     }
 
     @Override
-    public void assignRoles(Integer managerId, ArrayList<Long> roleIds) throws BizException {
+    public void assignRoles(Long managerId, ArrayList<Long> roleIds) throws BizException {
         //先清空原角色
         this.userRoleDao.deleteByUserId(managerId);
         //重新增加
@@ -133,7 +133,7 @@ public class SysUserServiceIml extends BaseServiceIml<SysUser, Integer> implemen
     }
 
     @Override
-    public void resetPassword(Integer id) throws BizException {
+    public void resetPassword(Long id) throws BizException {
         SysUser sysUser = this.find(id);
         if (sysUser == null) {
             throw new BizException(BizCodeFace.createBizCode(ErrorCode.DATE_NULL).message("未找到用户信息"));
