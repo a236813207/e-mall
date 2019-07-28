@@ -19,17 +19,21 @@ import java.util.Objects;
 @Setter
 public class SysUserRole implements Serializable{
     @Id
-    @Column(name = "user_id", nullable = false, length = 20)
+    @Column(name = "user_id", columnDefinition="bigint(20) not null comment '用户id'")
     private Long userId;
 
     @Id
-    @Column(name = "role_id", nullable = false, length = 20)
+    @Column(name = "role_id", columnDefinition="bigint(20) not null comment '角色id'")
     private Long roleId;
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SysUserRole that = (SysUserRole) o;
         return Objects.equals(userId, that.userId) &&
                 Objects.equals(roleId, that.roleId);

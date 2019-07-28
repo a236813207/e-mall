@@ -17,13 +17,13 @@ import javax.persistence.*;
 @Setter
 public class SysUser extends BaseEntity {
 
-    @Column(name = "user_name", nullable = false, length = 32)
+    @Column(name = "user_name", columnDefinition="varchar(32) not null comment '账户名'")
     private String userName;
 
-    @Column(nullable = false, length = 128)
+    @Column(name = "password", columnDefinition="varchar(128) not null comment '密码'")
     private String password;
 
-    @Column(nullable = false, length = 128)
+    @Column(name = "salt", columnDefinition="varchar(128) not null comment '密码盐值'")
     private String salt;
 
 }

@@ -1,4 +1,4 @@
-package com.ken.mall.entity.rbac.enum_;
+package com.ken.mall.entity.rbac.enums;
 
 /**
  * @author Ken

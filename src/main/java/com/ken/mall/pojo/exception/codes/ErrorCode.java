@@ -4,11 +4,14 @@ package com.ken.mall.pojo.exception.codes;
 import com.ken.mall.pojo.base.BizCodeEnum;
 
 /**
- * com.xfbetter.common.exception.biz.codes
- * author Daniel
- * 2017/12/6.
+ * @author Ken
+ * @date 2017/12/6
+ * @description
  */
 public enum ErrorCode implements BizCodeEnum<ErrorCode> {
+    /**
+     * 错误码
+     */
     PARAM_ERROR(1,"接口参数错误"),
     OK(2,"接口调用成功"),
     PERMISSION_EXPIRED(3,"权限授权过期"),

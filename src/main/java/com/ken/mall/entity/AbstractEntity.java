@@ -6,6 +6,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * @author Ken
+ * @date 2018/11/02
+ * @description
+ */
 @MappedSuperclass
 @EntityListeners(EntityListener.class)
 public abstract class AbstractEntity<ID extends Serializable> implements Serializable {
@@ -42,14 +47,14 @@ public abstract class AbstractEntity<ID extends Serializable> implements Seriali
     /**
      * 创建日期
      */
-    @Column(nullable = false, updatable = false, name = "create_time")
+    @Column(name = "create_time", updatable = false, columnDefinition="datetime not null comment '修改时间'")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
     /**
      * 修改日期
      */
-    @Column(nullable = false, name = "modify_time")
+    @Column(name = "modify_time", updatable = false, columnDefinition="datetime default null comment '修改时间'")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifyTime;
 
@@ -75,8 +80,12 @@ public abstract class AbstractEntity<ID extends Serializable> implements Seriali
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AbstractEntity)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof AbstractEntity)) {
+            return false;
+        }
         AbstractEntity<?> that = (AbstractEntity<?>) o;
         return Objects.equals(this.getId(), that.getId());
     }

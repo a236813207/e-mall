@@ -1,8 +1,8 @@
 package com.ken.mall.dao;
 
-import com.ken.mall.entity.CascadeEntity;
+import com.ken.mall.entity.CascadeEntityAbstract;
 import com.ken.mall.entity.LogicDeleteable;
-import com.ken.mall.entity.OrderEntity;
+import com.ken.mall.entity.AbstractOrderEntity;
 import com.ken.mall.pojo.search.Filter;
 import org.dom4j.tree.AbstractEntity;
 import org.slf4j.Logger;
@@ -130,13 +130,13 @@ public class GenericRepositoryImpl<T, ID extends Serializable> extends SimpleJpa
         addRestrictions(criteriaQuery, filters);
         addOrders(criteriaQuery, orders);
         if (criteriaQuery.getOrderList().isEmpty()) {
-            if (CascadeEntity.class.isAssignableFrom(entityClass)) {
-                criteriaQuery.orderBy(criteriaBuilder.desc(root.get(CascadeEntity.PATH_PROPERTY_NAME)),
-                        criteriaBuilder.asc(root.get(OrderEntity.ORDER_PROPERTY_NAME)));
-            } else if (OrderEntity.class.isAssignableFrom(entityClass)) {
-                criteriaQuery.orderBy(criteriaBuilder.asc(root.get(OrderEntity.ORDER_PROPERTY_NAME)));
+            if (CascadeEntityAbstract.class.isAssignableFrom(entityClass)) {
+                criteriaQuery.orderBy(criteriaBuilder.desc(root.get(CascadeEntityAbstract.PATH_PROPERTY_NAME)),
+                        criteriaBuilder.asc(root.get(AbstractOrderEntity.ORDER_PROPERTY_NAME)));
+            } else if (AbstractOrderEntity.class.isAssignableFrom(entityClass)) {
+                criteriaQuery.orderBy(criteriaBuilder.asc(root.get(AbstractOrderEntity.ORDER_PROPERTY_NAME)));
             } else if (AbstractEntity.class.isAssignableFrom(entityClass)) {
-                criteriaQuery.orderBy(criteriaBuilder.desc(root.get(OrderEntity.CREATE_DATE_PROPERTY_NAME)));
+                criteriaQuery.orderBy(criteriaBuilder.desc(root.get(AbstractOrderEntity.CREATE_DATE_PROPERTY_NAME)));
             }
         }
         TypedQuery<T> query = entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT);
@@ -162,13 +162,13 @@ public class GenericRepositoryImpl<T, ID extends Serializable> extends SimpleJpa
         addRestrictions(criteriaQuery, filters);
         addOrders(criteriaQuery, orders);
         if (criteriaQuery.getOrderList().isEmpty()) {
-            if (CascadeEntity.class.isAssignableFrom(entityClass)) {
-                criteriaQuery.orderBy(criteriaBuilder.desc(root.get(CascadeEntity.PATH_PROPERTY_NAME)),
-                        criteriaBuilder.asc(root.get(OrderEntity.ORDER_PROPERTY_NAME)));
-            } else if (OrderEntity.class.isAssignableFrom(entityClass)) {
-                criteriaQuery.orderBy(criteriaBuilder.asc(root.get(OrderEntity.ORDER_PROPERTY_NAME)));
+            if (CascadeEntityAbstract.class.isAssignableFrom(entityClass)) {
+                criteriaQuery.orderBy(criteriaBuilder.desc(root.get(CascadeEntityAbstract.PATH_PROPERTY_NAME)),
+                        criteriaBuilder.asc(root.get(AbstractOrderEntity.ORDER_PROPERTY_NAME)));
+            } else if (AbstractOrderEntity.class.isAssignableFrom(entityClass)) {
+                criteriaQuery.orderBy(criteriaBuilder.asc(root.get(AbstractOrderEntity.ORDER_PROPERTY_NAME)));
             } else if (AbstractEntity.class.isAssignableFrom(entityClass)) {
-                criteriaQuery.orderBy(criteriaBuilder.desc(root.get(OrderEntity.CREATE_DATE_PROPERTY_NAME)));
+                criteriaQuery.orderBy(criteriaBuilder.desc(root.get(AbstractOrderEntity.CREATE_DATE_PROPERTY_NAME)));
             }
         }
         long total = count(criteriaQuery, null);

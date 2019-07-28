@@ -7,13 +7,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <link rel="shortcut icon" href="${ctxPath}/img/favicon.ico">
-    <link href="${ctxPath}/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="${ctxPath}/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="${ctxPath}/css/animate.css" rel="stylesheet">
-    <link href="${ctxPath}/css/style.css?v=4.1.0" rel="stylesheet">
-    <link href="${ctxPath}/js/plugins/validform/css/validform.css" rel="stylesheet">
-    <link href="${ctxPath}/js/plugins/layui/css/layui.css?v=2.4.5" rel="stylesheet">
+    <link rel="import" href="${ctxPath}/page/header.html?__inline">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -30,11 +24,11 @@
 
         <form id="form1" class="layui-form mt" role="form" action="">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="用户名" required="required" name="username"
+                <input type="text" class="form-control" placeholder="用户名" required lay-verify="required" name="username"
                        size="20" maxlength="20">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="密码" required="required" name="password"
+                <input type="password" class="form-control" placeholder="密码" required lay-verify="required" name="password"
                        size="20" maxlength="20" >
             </div>
             <!--<div class="form-group input-group m-b">
@@ -57,7 +51,6 @@
 <script type="text/javascript" src="${ctxPath}/js/jquery.min.js?v=2.1.4"></script>
 <script type="text/javascript" src="${ctxPath}/js/plugins/layui/layui.js?v=2.4.5"></script>
 <script type="text/javascript" src="${ctxPath}/js/bootstrap.min.js?v=3.3.6"></script>
-<script type="text/javascript" src="${ctxPath}/js/plugins/validform/js/validform.js"></script>
 <script type="text/javascript" src="${ctxPath}/js/common.js"></script>
 <script>
     layui.use('form', function(){
@@ -83,38 +76,6 @@
         var img = document.getElementById("verImg");
         img.src = "${ctxPath}/login/validcode?" + Math.random();
     }*/
-
-    /*$(function(){
-        $("#form1").Validform({
-            tiptype:function(msg,o,cssctl){
-                if(!o.obj.is('form')){
-                    if(o.type!=2){  //状态为2时，表示通过验证，成功就不提示
-                        if(o.obj.parent().find(".Validform_checktip").length==0){
-                            o.obj.parent().append("<span class='Validform_checktip' />");
-                            o.obj.parent().next().find(".Validform_checktip").remove();
-                        }
-                        var objtip = o.obj.parent().find(".Validform_checktip");
-                        cssctl(objtip,o.type);
-                        objtip.text(msg);
-                    }else{
-                        o.obj.parent().find(".Validform_checktip").remove();
-                    }
-                }
-            },
-            ajaxPost:true,
-            callback:function(data){
-                if(data.code==2){
-                    location.href="${ctxPath}/admin/main";
-                }else{
-                    layer.open({
-                        content: data.info==null?"登录失败":data.info,
-                        btn: '我知道了'
-                    });
-                    //changeImg();
-                }
-            }
-        });
-    });*/
 
 </script>
 </body>

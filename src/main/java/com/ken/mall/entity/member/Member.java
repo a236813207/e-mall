@@ -12,61 +12,50 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.util.Date;
 
+/**
+ * @author Ken
+ * @date 2019/7/28
+ * @description
+ */
 @Entity
 @Table(name = "member")
 @Getter
 @Setter
 public class Member extends BaseEntity {
 
-    //账号名称
-    @Column(length = 32, nullable = false, name = "account_name")
+    @Column(name = "account_name", columnDefinition="varchar(32) not null comment '会员名称'")
     private String accountName;
 
-    //密码
-    @Column(length = 128, nullable = false, name = "password")
+    @Column(name = "password", columnDefinition="varchar(128) not null comment '密码'")
     private String password;
 
-    //密码的盐
-    @Column(length = 128, nullable = false, name = "salt")
+    @Column(name = "salt", columnDefinition="varchar(128) not null comment '密码盐值'")
     private String salt;
 
-    //注册时间
-    @Column(nullable = false, name = "register_time")
-    private Date registerTime;
-
-    //手机号码
-    @Column(length = 32, name = "mobile")
+    @Column(name = "mobile", columnDefinition="varchar(16) default null comment '手机号'")
     private String mobile;
 
-    //头像url
-    @Column(length = 500, name = "avatar_url")
+    @Column(name = "avatar_url", columnDefinition="varchar(255) default null comment '密码盐值'")
     private String avatarUrl;
 
-    //昵称
-    @Column(length = 128, name = "nick_name")
+    @Column(name = "nick_name", columnDefinition="varchar(128) default null comment '昵称'")
     private String nickName;
 
-    //性别
-    @Column(nullable = false, length = 1, name = "gender")
+    @Column(name = "gender", columnDefinition="tinyint(2) default null comment '性别'")
     @Convert(converter = GenderEnumConverter.class)
     private GenderEnum gender;
 
-    //详细地址
-    @Column(length = 1024, name = "address")
+    @Column(name = "address", columnDefinition="varchar(512) default null comment '地址'")
     private String address;
 
-    //微信openid
-    @Column(length = 128, name = "wx_open_id")
+    @Column(name = "wx_open_id", columnDefinition="varchar(128) default null comment '微信openid'")
     private String wxOpenId;
 
-    //微信unionid
-    @Column(length = 128, name = "wx_union_id")
+    @Column(name = "wx_union_id", columnDefinition="varchar(128) default null comment '微信unionid'")
     private String wxUnionId;
 
-    //使用状态
-    @Column(nullable = false, length = 1, name = "status")
+    @Column(name = "status", columnDefinition="tinyint(2) not null comment '状态'")
     @Convert(converter = MemberStatusEnumConverter.class)
     private MemberStatusEnum status;
 

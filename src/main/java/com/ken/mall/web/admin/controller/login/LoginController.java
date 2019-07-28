@@ -44,17 +44,14 @@ public class LoginController {
 
     @GetMapping("/login")
     @ApiOperation(value = "登录页面")
-    public ModelAndView login() {
-        ModelAndView model = new ModelAndView();
+    public String login() {
         Subject subject = SecurityUtils.getSubject();
         if (subject != null && subject.isAuthenticated()) {
             //SysUser manager = (SysUser) subject.getSession().getAttribute(AdminConst.MEMBER_SESSION_ATTR_KEY);
             //ManagerInfoResp rs = new ManagerInfoResp(manager.getUserName(), manager.getId());
-            model.setViewName("redirect:/admin/main");
-        }else {
-            model.setViewName("login");
+            return "redirect:/admin/main";
         }
-        return model;
+        return "login";
     }
 
     @PostMapping("/login")
@@ -71,8 +68,7 @@ public class LoginController {
             ManagerInfoResp rs = new ManagerInfoResp(manager.getUserName(), manager.getId());
             return ResBody.success(rs);
         }
-        String shiroLoginFailureEx =
-                (String) request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
+        String shiroLoginFailureEx = (String) request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
 
         if (IncorrectCredentialsException.class.getName().equals(shiroLoginFailureEx)) {
             throw new BizException(BizCodeFace.createBizCode(ErrorCode.AUTH_FAIL));
@@ -96,23 +92,19 @@ public class LoginController {
 
     @GetMapping("/index")
     @ApiOperation(value = "首页")
-    public ModelAndView index() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("index");
-        return model;
+    public String index() {
+        return "index";
     }
 
     @GetMapping("/logout")
     @ApiOperation(value = "退出登录")
-    public ModelAndView logout() {
+    public String logout() {
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.logout();
         } catch (SessionException ise) {
             logger.debug("Encountered session exception during logout.  This can generally safely be ignored.", ise);
         }
-        ModelAndView model = new ModelAndView();
-        model.setViewName("login");
-        return model;
+        return "login";
     }
 }

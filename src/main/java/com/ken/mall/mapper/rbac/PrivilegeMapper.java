@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * RBAC相关查询
- * com.xfbetter.service.mapper.rbac
- * author Daniel
- * 2017/12/19.
+ * @author Ken
+ * @date 2019/4/22
+ * @description
  */
 public interface PrivilegeMapper {
     /**

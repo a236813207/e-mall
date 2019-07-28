@@ -15,10 +15,12 @@ public abstract class BaseEntity extends AbstractEntity<Long>{
     @Column(name = "id", length = 20, insertable = false, updatable = false)
     private Long id;
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

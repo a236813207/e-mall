@@ -3,22 +3,22 @@ package com.ken.mall.entity.order.enums;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ken.mall.pojo.base.PairsEnum;
 
-/**
- * @author Ken
- * @date 2018/11/02
- * @description
- */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum OrderStatusEnum implements PairsEnum<OrderStatusEnum> {
-    /**
-     * 订单状态
-     */
-    UN_FINISHED(1, "未完成"), SHIPPED(2, "已发货"), FINISHED(3, "已完成"), CANCELED(4, "已取消");
+public enum OrderLogStatusEnum implements PairsEnum<OrderLogStatusEnum> {
+
+    CREATED(1, "订单创建"),
+    PAID(2, "订单支付"),
+    SHIPPED(3, "订单发货"),
+    RECEIVED(4, "确认收货"),
+    COMPLETED(5, "订单完成"),
+    CANCELED(6, "订单取消"),
+    REFUNDED(7, "订单退款"),
+    OTHER(8, "其它");
 
     private int value;
     private String key;
 
-    OrderStatusEnum(int value, String key) {
+    OrderLogStatusEnum(int value, String key) {
         this.value = value;
         this.key = key;
     }

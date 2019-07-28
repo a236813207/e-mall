@@ -20,17 +20,21 @@ import java.util.Objects;
 public class SysRoleResource implements Serializable{
 
     @Id
-    @Column(name = "role_id", nullable = false, length = 20)
+    @Column(name = "role_id", columnDefinition="bigint(20) not null comment '角色id'")
     private Long roleId;
 
     @Id
-    @Column(name = "resource_id", nullable = false, length = 20)
+    @Column(name = "resource_id", columnDefinition="bigint(20) not null comment '资源id'")
     private Long resourceId;
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SysRoleResource that = (SysRoleResource) o;
         return Objects.equals(roleId, that.roleId) &&
                 Objects.equals(resourceId, that.resourceId);

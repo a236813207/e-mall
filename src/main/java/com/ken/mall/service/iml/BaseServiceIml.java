@@ -145,7 +145,7 @@ public abstract class BaseServiceIml<T, ID extends Serializable> implements Base
         T persistant = this.find(repository.getIdentifier(entity));
 
         if (persistant != null) {
-            copyProperties(entity, persistant, (String[]) ArrayUtils.addAll(ignoreProperties, UPDATE_IGNORE_PROPERTIES));
+            copyProperties(entity, persistant, ArrayUtils.addAll(ignoreProperties, UPDATE_IGNORE_PROPERTIES));
             return update(persistant);
         } else {
             return update(entity);

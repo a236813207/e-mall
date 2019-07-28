@@ -26,8 +26,12 @@ public class SysRoleResourcePK implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SysRoleResourcePK that = (SysRoleResourcePK) o;
         return Objects.equals(roleId, that.roleId) &&
                 Objects.equals(resourceId, that.resourceId);

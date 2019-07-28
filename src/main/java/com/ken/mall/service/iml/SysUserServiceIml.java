@@ -52,14 +52,13 @@ public class SysUserServiceIml extends BaseServiceIml<SysUser, Long> implements 
         if (user == null) {
             return Collections.emptyList();
         }
-        List<SysRole> roles = privilegeMapper.findAllRolesByUserId(user.getId());
-        return roles;
+        return this.privilegeMapper.findAllRolesByUserId(user.getId());
     }
 
     @Override
     public Set<String> findRoleNames(String username) throws BizException {
         List<SysRole> roles = findRoles(username);
-        return roles.stream().map(SysRole::getRole).collect(Collectors.toSet());
+        return roles.stream().map(SysRole::getName).collect(Collectors.toSet());
     }
 
     @Override
@@ -68,7 +67,7 @@ public class SysUserServiceIml extends BaseServiceIml<SysUser, Long> implements 
         if (manager == null) {
             return Collections.emptyList();
         }
-        return privilegeMapper.findPermissionsByUserId(manager.getId());
+        return this.privilegeMapper.findPermissionsByUserId(manager.getId());
     }
 
     @Override

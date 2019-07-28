@@ -19,10 +19,10 @@ import javax.persistence.Table;
 @Setter
 public class SysRole extends BaseEntity {
 
-    @Column(unique = true, nullable = false, length = 32)
-    private String role;
+    @Column(name = "name", columnDefinition="varchar(32) not null comment '角色名称'")
+    private String name;
 
-    @Column(nullable = false, length = 32)
-    private String description;
+    @Column(name = "memo", columnDefinition="varchar(128) not null comment '描述'")
+    private String memo;
 
 }
