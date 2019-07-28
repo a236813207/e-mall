@@ -4,6 +4,7 @@ import com.ken.mall.dao.GenericRepositoryImpl;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -20,6 +21,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         basePackages = {"com.ken.mall.dao"},
         enableDefaultTransactions = false)
 @EnableAspectJAutoProxy(exposeProxy = true)
+@EntityScan("com.ken.mall.entity")
 public class MallApplication {
 
     public static void main(String[] args) {

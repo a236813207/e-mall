@@ -1,25 +1,28 @@
 package com.ken.mall.pojo.search;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 分页
- * 
- * 
- * @version 1.0
+ * @author Ken
+ * @date 2019/7/28
+ * @description
  */
 public class PageBo<T> implements Serializable {
 
 	private static final long serialVersionUID = -2053800594583879853L;
 
 	/** 内容 */
-	private final List<T> content = new ArrayList<T>();
+	private final List<T> data = new ArrayList<T>();
+
+	private int draw = 1;
 
 	/** 总记录数 */
-	private final long total;
+	private final long recordsTotal;
+
+	/** 总记录数 */
+	private final long recordsFiltered;
 
 	/** 分页信息 */
 	private final PageRequestBo pageable;
@@ -28,21 +31,23 @@ public class PageBo<T> implements Serializable {
 	 * 初始化一个新创建的Page对象
 	 */
 	public PageBo() {
-		this.total = 0L;
+		this.recordsTotal = 0L;
+		this.recordsFiltered = 0L;
 		this.pageable = new PageRequestBo();
 	}
 
 	/**
-	 * @param content
+	 * @param data
 	 *            内容
-	 * @param total
+	 * @param recordsTotal
 	 *            总记录数
 	 * @param pageable
 	 *            分页信息
 	 */
-	public PageBo(List<T> content, long total, PageRequestBo pageable) {
-		this.content.addAll(content);
-		this.total = total;
+	public PageBo(List<T> data, long recordsTotal, PageRequestBo pageable) {
+		this.data.addAll(data);
+		this.recordsTotal = recordsTotal;
+		this.recordsFiltered = recordsTotal;
 		this.pageable = pageable;
 	}
 
@@ -70,7 +75,7 @@ public class PageBo<T> implements Serializable {
 	 * @return 总页数
 	 */
 	public int getTotalPages() {
-		return (int) Math.ceil((double) getTotal() / (double) getRows());
+		return (int) Math.ceil((double) getRecordsTotal() / (double) getRows());
 	}
 
 	/**
@@ -78,8 +83,8 @@ public class PageBo<T> implements Serializable {
 	 * 
 	 * @return 内容
 	 */
-	public List<T> getContent() {
-		return content;
+	public List<T> getData() {
+		return data;
 	}
 
 	/**
@@ -87,8 +92,21 @@ public class PageBo<T> implements Serializable {
 	 * 
 	 * @return 总记录数
 	 */
-	public long getTotal() {
-		return total;
+	public long getRecordsTotal() {
+		return recordsTotal;
 	}
+
+	public int getDraw() {
+		return draw;
+	}
+
+	public void setDraw(int draw) {
+		this.draw = draw;
+	}
+
+	public long getRecordsFiltered() {
+		return recordsTotal;
+	}
+
 
 }

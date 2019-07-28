@@ -1,10 +1,15 @@
 package com.ken.mall.entity.rbac;
 
 import com.ken.mall.entity.BaseEntity;
+import com.ken.mall.entity.rbac.converter.SysUserStatusEnumConverter;
+import com.ken.mall.entity.rbac.enums.SysUserStatusEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @author Ken
@@ -26,4 +31,7 @@ public class SysUser extends BaseEntity {
     @Column(name = "salt", columnDefinition="varchar(128) not null comment '密码盐值'")
     private String salt;
 
+    @Column(name = "status", columnDefinition="tinyint(2) not null comment '状态'")
+    @Convert(converter = SysUserStatusEnumConverter.class)
+    private SysUserStatusEnum status;
 }

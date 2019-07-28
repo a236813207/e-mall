@@ -28,6 +28,11 @@ public class PageRequestBo implements Serializable {
 	/** 每页记录数 */
 	private int rows = DEFAULT_PAGE_SIZE;
 
+	/** 起始记录 */
+	private int start = DEFAULT_PAGE_NUMBER;
+
+	/** 每页记录数 */
+	private int length = DEFAULT_PAGE_SIZE;
 
 	/**
 	 * 初始化一个新创建的Pageable对象
@@ -58,7 +63,7 @@ public class PageRequestBo implements Serializable {
 	 * @return 页码
 	 */
 	public int getPage() {
-		return page;
+		return (int)Math.floor(start/length) + 1;
 	}
 
 	/**
@@ -94,6 +99,31 @@ public class PageRequestBo implements Serializable {
 			pageSize = DEFAULT_PAGE_SIZE;
 		}
 		this.rows = pageSize;
+	}
+
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		if (start < 1) {
+			start = DEFAULT_PAGE_NUMBER;
+		}
+		this.start = start;
+	}
+
+	public int getLength() {
+		if (length < 1) {
+			length = DEFAULT_PAGE_SIZE;
+		}
+		return length;
+	}
+
+	public void setLength(int pageSize) {
+		if (pageSize < 1 || pageSize > MAX_PAGE_SIZE) {
+			pageSize = DEFAULT_PAGE_SIZE;
+		}
+		this.length = pageSize;
 	}
 
 	@Override

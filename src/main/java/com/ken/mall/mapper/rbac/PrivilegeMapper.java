@@ -16,7 +16,7 @@ public interface PrivilegeMapper {
     /**
      * 后台管理员查询
      */
-    List<SysUser>  findAllManagers(Map<String, Object> param);
+    List<SysUser> findAllManagers(Map<String, Object> param);
 
     /**
      * 查询用户的所有角色
