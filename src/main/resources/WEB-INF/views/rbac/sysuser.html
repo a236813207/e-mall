@@ -23,14 +23,14 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <!--<div class="ibox-title">
                     <h5>帐号管理 </h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
                         </a>
                     </div>
-                </div>
+                </div>-->
                 <div class="ibox-content" style="overflow: auto;">
                     <!-- <div class="form-inline">
                         <div class="input-group m-b">
@@ -206,6 +206,7 @@
     });
 
     function resetPassword(id){
+        var layer = layui.layer;
         layer.prompt(
             {title: '重置密码 - 输入新的密码', formType: 0},
             function(password, index){
@@ -214,7 +215,7 @@
                     contentType: "application/json;charset=UTF-8",
                     dataType: "json",
                     data:{id: id, password: password},
-                    url: "${ctxPath}/admin/usermanage/resetpassword",
+                    url: "${ctxPath}/admin/sysuer/resetpassword",
                     success:function(data){
                         if(data.status=='y'){
                             layer.close(index);

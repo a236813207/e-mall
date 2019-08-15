@@ -1,12 +1,12 @@
-package com.ken.mall.web.admin.controller.sysuser;
+package com.ken.mall.web.admin.controller.rbac;
 
 import com.ken.mall.entity.rbac.SysRole;
 import com.ken.mall.entity.rbac.SysUser;
 import com.ken.mall.pojo.search.Filter;
 import com.ken.mall.pojo.search.PageBo;
 import com.ken.mall.pojo.search.PageRequestBo;
-import com.ken.mall.service.SysUserService;
-import com.ken.mall.web.admin.controller.sysuser.resp.SysUserResp;
+import com.ken.mall.service.rbac.SysUserService;
+import com.ken.mall.web.admin.controller.rbac.resp.SysUserResp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -38,17 +38,17 @@ public class SysUserController {
     @GetMapping("")
     @ApiOperation(value = "系统用户管理页面")
     public String index() {
-        return "/sysuser/sysuser";
+        return "/rbac/sysuser";
     }
 
 
     @GetMapping("/list")
     @ApiOperation(value = "获取用户列表")
     @ResponseBody
-    public PageBo list(@RequestParam(required = false) String nameKey,
+    public PageBo list(@RequestParam(required = false) String userName,
                         @RequestParam(required = false) Integer roleId,
                         @ApiIgnore PageRequestBo page) {
-        PageBo<SysUser> result = this.sysUserService.findPage(Filter.LikeValue.both(nameKey), roleId, page);
+        PageBo<SysUser> result = this.sysUserService.findPage(Filter.LikeValue.both(userName), roleId, page);
 
         List<SysUserResp> resps = result.getData().stream()
                 .map(item -> {

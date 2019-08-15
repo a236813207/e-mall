@@ -1,6 +1,6 @@
 package com.ken.mall.config;
 
-import com.ken.mall.service.SysUserService;
+import com.ken.mall.service.rbac.SysUserService;
 import com.ken.mall.web.admin.auth.UserRealm;
 import com.ken.mall.web.admin.auth.credentials.UserCredentialMatcher;
 import com.ken.mall.web.filter.AuthFilter;

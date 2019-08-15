@@ -1,7 +1,7 @@
 package com.ken.mall.web.admin.auth;
 
 import com.ken.mall.entity.rbac.SysUser;
-import com.ken.mall.service.SysUserService;
+import com.ken.mall.service.rbac.SysUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;

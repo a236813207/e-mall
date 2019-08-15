@@ -1,4 +1,4 @@
-package com.ken.mall.web.admin.controller.sysuser.resp;
+package com.ken.mall.web.admin.controller.rbac.resp;
 
 import com.ken.mall.entity.rbac.enums.SysUserStatusEnum;
 import lombok.Getter;
