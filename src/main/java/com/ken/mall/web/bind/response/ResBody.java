@@ -2,7 +2,7 @@ package com.ken.mall.web.bind.response;
 
 
 import com.ken.mall.pojo.base.BizCodeEnum;
-import com.ken.mall.pojo.exception.codes.ErrorCode;
+import com.ken.mall.exception.codes.ErrorCode;
 
 /**
  * @author Ken

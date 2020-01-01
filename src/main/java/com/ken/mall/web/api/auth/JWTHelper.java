@@ -6,9 +6,9 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.ken.mall.pojo.exception.BizException;
-import com.ken.mall.pojo.exception.codes.BizCodeFace;
-import com.ken.mall.pojo.exception.codes.ErrorCode;
+import com.ken.mall.exception.BizException;
+import com.ken.mall.exception.codes.BizCodeFace;
+import com.ken.mall.exception.codes.ErrorCode;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
@@ -26,7 +26,7 @@ public class JWTHelper {
 
     private static String secret = "XX#$%()(#*!()!KL<><sdys9seBs dsddsgdsddddd>?N<:{LWPW";
 
-    @Value("${wx.ma.token.expiry}")
+    @Value("${token.expiry}")
     private static long expiry;
 
     public static String sign(long userId, String tokenType) {
@@ -39,7 +39,7 @@ public class JWTHelper {
         Date expiresDate = Date.from(now.plusSeconds(expirySeconds).atZone(ZoneId.systemDefault()).toInstant());
 
         // header Map
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(2);
         map.put("alg", "HS256");
         map.put("typ", "JWT");
 
@@ -55,16 +55,15 @@ public class JWTHelper {
         jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。
         */
         try {
-            String token = JWT.create().withHeader(map) // header
-                    .withClaim("iss", "Service") // payload
+            String token = JWT.create().withHeader(map)
+                    .withClaim("iss", "Service")
                     .withClaim("aud", tokenType)
                     .withClaim("userId", userId)
-                    .withIssuedAt(Date.from(now.atZone(ZoneId.systemDefault()).toInstant())) // sign time
-                    .withExpiresAt(expiresDate) // expire time
-                    .sign(Algorithm.HMAC256(secret)); // signature
+                    .withIssuedAt(Date.from(now.atZone(ZoneId.systemDefault()).toInstant()))
+                    .withExpiresAt(expiresDate)
+                    .sign(Algorithm.HMAC256(secret));
             return token;
         } catch (Exception e) {
-
             throw new BizException(BizCodeFace.createBizCode(ErrorCode.DATE_NULL));
         }
     }
@@ -81,7 +80,7 @@ public class JWTHelper {
     }
 
     public static void main(String[] args){
-        String token = sign(10, "wx_app", 600);
+        String token = sign(10, "h5_app", 600);
         System.out.println(token);
         Map<String, Claim> decodeToken = unSign(token);
         System.out.println(decodeToken);

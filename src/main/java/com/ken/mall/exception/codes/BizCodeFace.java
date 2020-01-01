@@ -1,4 +1,4 @@
-package com.ken.mall.pojo.exception.codes;
+package com.ken.mall.exception.codes;
 
 
 import com.ken.mall.pojo.base.BizCodeEnum;

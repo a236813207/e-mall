@@ -2,9 +2,9 @@ package com.ken.mall.web.admin.controller.login;
 
 import com.ken.mall.constant.AdminConst;
 import com.ken.mall.entity.rbac.SysUser;
-import com.ken.mall.pojo.exception.BizException;
-import com.ken.mall.pojo.exception.codes.BizCodeFace;
-import com.ken.mall.pojo.exception.codes.ErrorCode;
+import com.ken.mall.exception.BizException;
+import com.ken.mall.exception.codes.BizCodeFace;
+import com.ken.mall.exception.codes.ErrorCode;
 import com.ken.mall.web.admin.controller.login.resp.ManagerInfoResp;
 import com.ken.mall.web.bind.response.ResBody;
 import io.swagger.annotations.Api;

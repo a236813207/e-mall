@@ -1,7 +1,7 @@
 package com.ken.mall.service.base;
 
 
-import com.ken.mall.pojo.exception.BizException;
+import com.ken.mall.exception.BizException;
 import com.ken.mall.pojo.search.Filter;
 import com.ken.mall.pojo.search.OrderBo;
 import com.ken.mall.pojo.search.PageBo;

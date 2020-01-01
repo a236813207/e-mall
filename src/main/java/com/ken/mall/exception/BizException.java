@@ -1,7 +1,7 @@
-package com.ken.mall.pojo.exception;
+package com.ken.mall.exception;
 
 
-import com.ken.mall.pojo.exception.codes.BizCodeFace;
+import com.ken.mall.exception.codes.BizCodeFace;
 
 /**
  * 业务类异常

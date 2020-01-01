@@ -3,7 +3,7 @@ package com.ken.mall.service.rbac;
 import com.ken.mall.entity.rbac.SysResource;
 import com.ken.mall.entity.rbac.SysRole;
 import com.ken.mall.entity.rbac.SysUser;
-import com.ken.mall.pojo.exception.BizException;
+import com.ken.mall.exception.BizException;
 import com.ken.mall.pojo.search.PageBo;
 import com.ken.mall.pojo.search.PageRequestBo;
 import com.ken.mall.service.base.BaseService;

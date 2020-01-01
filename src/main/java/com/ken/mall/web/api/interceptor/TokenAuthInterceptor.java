@@ -1,12 +1,15 @@
 package com.ken.mall.web.api.interceptor;
 
 import com.auth0.jwt.interfaces.Claim;
-import com.ken.mall.pojo.exception.BizException;
-import com.ken.mall.pojo.exception.codes.BizCodeFace;
-import com.ken.mall.pojo.exception.codes.ErrorCode;
+import com.ken.mall.exception.BizException;
+import com.ken.mall.exception.codes.BizCodeFace;
+import com.ken.mall.exception.codes.ErrorCode;
+import com.ken.mall.service.session.TokenService;
 import com.ken.mall.web.api.auth.JWTHelper;
 import com.ken.mall.web.api.auth.TokenAuth;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -22,7 +25,7 @@ import java.util.Map;
  */
 public class TokenAuthInterceptor extends HandlerInterceptorAdapter {
 
-    //private WxMaTokenService tokenService;
+    private TokenService tokenService;
     //private MemberService memberService;
 
     @Override
@@ -46,6 +49,9 @@ public class TokenAuthInterceptor extends HandlerInterceptorAdapter {
         //获取token
         if (auth.require()) {
             String tokenStr = request.getHeader("x-access-token");
+            if (StringUtils.isEmpty(tokenStr)) {
+                tokenStr = request.getParameter("access_token");
+            }
             if (StringUtils.isNotEmpty(tokenStr)) {
                 Map<String, Claim> claims = JWTHelper.unSign(tokenStr);
                 if (claims != null && claims.containsKey("userId")) {
@@ -66,12 +72,13 @@ public class TokenAuthInterceptor extends HandlerInterceptorAdapter {
         return true;
     }
 
-/*    @Autowired
+    @Autowired
     @Lazy
-    public void setTokenService(WxMaTokenService tokenService) {
+    public void setTokenService(TokenService tokenService) {
         this.tokenService = tokenService;
     }
 
+    /*
     @Autowired
     @Lazy
     public void setMemberService(MemberService memberService) {

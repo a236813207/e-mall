@@ -2,7 +2,7 @@ package com.ken.mall.web.filter;
 
 import com.ken.mall.constant.AdminConst;
 import com.ken.mall.entity.rbac.SysUser;
-import com.ken.mall.pojo.exception.codes.ErrorCode;
+import com.ken.mall.exception.codes.ErrorCode;
 import com.ken.mall.service.rbac.SysUserService;
 import com.ken.mall.web.bind.response.ResBody;
 import org.apache.shiro.authc.AuthenticationException;
