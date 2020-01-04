@@ -9,7 +9,9 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * <p>用于绑定@FormModel的方法参数解析器
+ * @author Ken
+ * @date 2020/1/4
+ * @description
  */
 public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentResolver {
 
@@ -26,8 +28,9 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
-                                  NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+                                  NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         CurrentUser currentUserAnnotation = parameter.getParameterAnnotation(CurrentUser.class);
+        System.out.println(webRequest.getAttribute(currentUserAnnotation.value(), NativeWebRequest.SCOPE_REQUEST));
         return webRequest.getAttribute(currentUserAnnotation.value(), NativeWebRequest.SCOPE_REQUEST);
     }
 }

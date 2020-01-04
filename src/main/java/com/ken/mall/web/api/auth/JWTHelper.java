@@ -10,6 +10,7 @@ import com.ken.mall.exception.BizException;
 import com.ken.mall.exception.codes.BizCodeFace;
 import com.ken.mall.exception.codes.ErrorCode;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -22,21 +23,22 @@ import java.util.Map;
  * @date 2019/4/28
  * @description
  */
+@Component
 public class JWTHelper {
 
     private static String secret = "XX#$%()(#*!()!KL<><sdys9seBs dsddsgdsddddd>?N<:{LWPW";
 
     @Value("${token.expiry}")
-    private static long expiry;
+    private static long expiry = 7;
 
     public static String sign(long userId, String tokenType) {
         return sign(userId, tokenType, expiry);
     }
 
-    public static String sign(long userId, String tokenType, long expirySeconds){
+    public static String sign(long userId, String tokenType, long expiryHours){
         LocalDateTime now = LocalDateTime.now();
         // 过期时间
-        Date expiresDate = Date.from(now.plusSeconds(expirySeconds).atZone(ZoneId.systemDefault()).toInstant());
+        Date expiresDate = Date.from(now.plusHours(expiryHours).atZone(ZoneId.systemDefault()).toInstant());
 
         // header Map
         Map<String, Object> map = new HashMap<>(2);

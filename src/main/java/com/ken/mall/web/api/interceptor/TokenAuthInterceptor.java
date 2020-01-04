@@ -1,9 +1,11 @@
 package com.ken.mall.web.api.interceptor;
 
 import com.auth0.jwt.interfaces.Claim;
+import com.ken.mall.constant.Constants;
 import com.ken.mall.exception.BizException;
 import com.ken.mall.exception.codes.BizCodeFace;
 import com.ken.mall.exception.codes.ErrorCode;
+import com.ken.mall.service.session.Token;
 import com.ken.mall.service.session.TokenService;
 import com.ken.mall.web.api.auth.JWTHelper;
 import com.ken.mall.web.api.auth.TokenAuth;
@@ -16,12 +18,12 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
-import java.util.Date;
 import java.util.Map;
 
 /**
- * @author Daniel
- * 2015/10/27
+ * @author Ken
+ * @date 2020/1/4
+ * @description
  */
 public class TokenAuthInterceptor extends HandlerInterceptorAdapter {
 
@@ -52,22 +54,20 @@ public class TokenAuthInterceptor extends HandlerInterceptorAdapter {
             if (StringUtils.isEmpty(tokenStr)) {
                 tokenStr = request.getParameter("access_token");
             }
-            if (StringUtils.isNotEmpty(tokenStr)) {
-                Map<String, Claim> claims = JWTHelper.unSign(tokenStr);
-                if (claims != null && claims.containsKey("userId")) {
-                    long userId = claims.get("userId").asLong();
-                    Date expiry = claims.get("exp").asDate();
-                    if (expiry.before(new Date())) {
-                        throw new BizException(BizCodeFace.createBizCode(ErrorCode.PERMISSION_EXPIRED));
-                    }
-                    if (userId > 0 ) {
-                        // 查找用户信息并存入session中 TODO
-                        //request.setAttribute(Constants.CURRENT_USER, model);
-                    } else {
-                        throw new BizException(BizCodeFace.createBizCode(ErrorCode.PERMISSION_DENIED));
-                    }
-                }
+            if (StringUtils.isEmpty(tokenStr)) {
+                throw new BizException(BizCodeFace.createBizCode(ErrorCode.PERMISSION_DENIED));
             }
+            Map<String, Claim> claims = JWTHelper.unSign(tokenStr);
+            if (claims == null && !claims.containsKey("userId")) {
+                throw new BizException(BizCodeFace.createBizCode(ErrorCode.PERMISSION_DENIED));
+            }
+            String key = claims.get("userId").asLong() + "";
+            Token token = tokenService.getToken(key);
+            if (token == null) {
+                throw new BizException(BizCodeFace.createBizCode(ErrorCode.PERMISSION_DENIED));
+            }
+            request.setAttribute(Constants.CURRENT_USER, token);
+            this.tokenService.delayToken(key);
         }
         return true;
     }

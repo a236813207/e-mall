@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.SerializationException;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020/1/1
  * @description
  */
+@Service
 public class TokenServiceImpl implements TokenService {
 
     private static final String PREFIXX = "USER_TOKEN_";
@@ -22,8 +24,8 @@ public class TokenServiceImpl implements TokenService {
     private RedisTemplate redisTemplate;
 
     //token过期时间
-    @Value("${token.hours}")
-    private int hours = 1;
+    @Value("${token.expiry}")
+    private int hours = 7;
 
     @Resource
     public void setRedisTemplate(RedisTemplate redisTemplate) {
