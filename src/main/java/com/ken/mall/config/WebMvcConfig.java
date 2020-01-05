@@ -38,7 +38,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenAuthInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/wx/auth","/payment/notify/*");
+                .excludePathPatterns("/api/lang", "/foo/*", "/wx/auth","/payment/notify/*");
     }
 
     //WebMvcConfigurerAdapter
