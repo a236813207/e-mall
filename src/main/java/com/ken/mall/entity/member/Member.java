@@ -36,8 +36,8 @@ public class Member extends BaseEntity {
     @Column(name = "mobile", columnDefinition="varchar(16) default null comment '手机号'")
     private String mobile;
 
-    @Column(name = "avatar_url", columnDefinition="varchar(255) default null comment '密码盐值'")
-    private String avatarUrl;
+    @Column(name = "avatar", columnDefinition="varchar(255) default null comment '头像'")
+    private String avatar;
 
     @Column(name = "nick_name", columnDefinition="varchar(128) default null comment '昵称'")
     private String nickName;
@@ -49,11 +49,13 @@ public class Member extends BaseEntity {
     @Column(name = "address", columnDefinition="varchar(512) default null comment '地址'")
     private String address;
 
+    /**
     @Column(name = "wx_open_id", columnDefinition="varchar(128) default null comment '微信openid'")
     private String wxOpenId;
 
     @Column(name = "wx_union_id", columnDefinition="varchar(128) default null comment '微信unionid'")
     private String wxUnionId;
+    */
 
     @Column(name = "status", columnDefinition="tinyint(2) not null comment '状态'")
     @Convert(converter = MemberStatusEnumConverter.class)
