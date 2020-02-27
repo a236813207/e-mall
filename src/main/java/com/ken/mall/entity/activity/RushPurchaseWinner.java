@@ -1,4 +1,4 @@
-package com.ken.mall.entity.member;
+package com.ken.mall.entity.activity;
 
 import com.ken.mall.entity.BaseEntity;
 import lombok.Getter;
@@ -10,17 +10,20 @@ import javax.persistence.Table;
 
 /**
  * @author Ken
- * @date 2019/7/28
- * @description 收货地址
+ * @date 2020/2/9
+ * @description 中奖人信息
  */
 @Entity
-@Table(name = "member_address")
+@Table(name = "rush_purchase_winner")
 @Getter
 @Setter
-public class MemberAddress extends BaseEntity {
+public class RushPurchaseWinner extends BaseEntity {
 
-    @Column(name = "member_id", columnDefinition="bigint(20) not null comment '会员id'")
+    @Column(name = "member_id", columnDefinition="bigint(20) not null comment '会员ID'")
     private Long memberId;
+
+    @Column(name = "rush_purchase_id", columnDefinition="bigint(20) not null comment '抢购活动ID'")
+    private Long rushPurchaseId;
 
     @Column(name = "consignee", columnDefinition="varchar(128) not null comment '收件人'")
     private String consignee;
@@ -39,8 +42,5 @@ public class MemberAddress extends BaseEntity {
 
     @Column(name = "phone", columnDefinition="varchar(32) not null comment '电话'")
     private String phone;
-
-    @Column(name = "is_default", columnDefinition="tinyint(1) default '0' comment '是否默认'")
-    private Boolean isDefault;
 
 }

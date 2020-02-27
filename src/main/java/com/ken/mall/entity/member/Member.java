@@ -61,4 +61,6 @@ public class Member extends BaseEntity {
     @Convert(converter = MemberStatusEnumConverter.class)
     private MemberStatusEnum status;
 
+    @Column(name = "sesame", columnDefinition="int(10) default 0 comment '芝麻数'")
+    private Long sesame;
 }

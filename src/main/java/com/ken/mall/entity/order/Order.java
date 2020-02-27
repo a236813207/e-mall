@@ -51,6 +51,12 @@ public class Order extends AbstractEntity<String> implements LogicDeleteable {
     @Convert(converter = OrderStatusEnumConverter.class)
     private OrderStatusEnum status;
 
+    @Column(name = "goods_id", columnDefinition="bigint(20) not null comment '商品id'")
+    private Long goodsId;
+
+    @Column(name = "goods_name", columnDefinition="varchar(256) not null comment '商品名称'")
+    private String goodsName;
+
     @Column(name = "member_id", columnDefinition="bigint(20) not null comment '会员id'")
     private Long memberId;
 
