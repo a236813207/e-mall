@@ -57,8 +57,8 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
                 String username = (String)SecurityUtils.getSubject().getPrincipal();
                 String operation = logConfig.getOperation();
                 String ip = IpUtils.getIpAddr(request);
-                String content = (String) request.getAttribute(Constants.LOG_CONTENT_REQUEST_KEY);
-                request.removeAttribute(Constants.LOG_CONTENT_REQUEST_KEY);
+                String content = (String) request.getAttribute(MallConstants.LOG_CONTENT_REQUEST_KEY);
+                request.removeAttribute(MallConstants.LOG_CONTENT_REQUEST_KEY);
                 StringBuffer parameter = new StringBuffer();
                 Map<String, String[]> parameterMap = request.getParameterMap();
                 if (parameterMap != null) {

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.ken.mall.web.api.interceptor.TokenAuthInterceptor;
+import com.ken.mall.web.mall.interceptor.TokenAuthInterceptor;
 import com.ken.mall.web.bind.method.CurrentUserMethodArgumentResolver;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -37,8 +37,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenAuthInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/api/lang", "/foo/*", "/wx/auth","/payment/notify/*");
+        /*registry.addInterceptor(tokenAuthInterceptor()).addPathPatterns("/**")
+                .excludePathPatterns("/api/lang", "/foo/*", "/wx/auth","/payment/notify/*");*/
     }
 
     //WebMvcConfigurerAdapter

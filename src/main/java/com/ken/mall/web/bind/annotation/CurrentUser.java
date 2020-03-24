@@ -1,7 +1,7 @@
 package com.ken.mall.web.bind.annotation;
 
 
-import com.ken.mall.constant.Constants;
+import com.ken.mall.constant.MallConstants;
 
 import java.lang.annotation.*;
 
@@ -19,6 +19,6 @@ public @interface CurrentUser {
      *
      * @return
      */
-    String value() default Constants.CURRENT_USER;
+    String value() default MallConstants.CURRENT_USER;
 
 }

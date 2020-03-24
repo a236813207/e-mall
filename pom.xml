@@ -222,7 +222,7 @@
                 <excludes>
                     <exclude>application-dev.properties</exclude>
                     <exclude>application-test.properties</exclude>
-                    <exclude>application-pre.properties</exclude>
+                    <exclude>application-pro.properties</exclude>
                     <exclude>static/**</exclude>
                 </excludes>
                 <filtering>false</filtering>

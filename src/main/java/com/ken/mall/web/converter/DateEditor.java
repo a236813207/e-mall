@@ -1,6 +1,6 @@
 package com.ken.mall.web.converter;
 
-import com.ken.mall.constant.Constants;
+import com.ken.mall.constant.MallConstants;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.beans.PropertyEditorSupport;
@@ -45,7 +45,7 @@ public class DateEditor extends PropertyEditorSupport {
                 setValue(null);
             } else {
                 try {
-                    setValue(DateUtils.parseDate(value, Constants.DATE_PATTERNS));
+                    setValue(DateUtils.parseDate(value, MallConstants.DATE_PATTERNS));
                 } catch (ParseException e) {
                     setValue(null);
                 }

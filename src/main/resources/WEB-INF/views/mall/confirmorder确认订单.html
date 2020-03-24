@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="keywords" content="" />
+    <meta name="description" content=" " />
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<title>确认订单</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/idangerous.swiper.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/idangerous.swiper-2.1.min.js"></script>
+    <script type="text/javascript" src="../../static/js/index.js"></script>
+</head>
+
+<body>
+  <div class="header">
+  		<a class="idx_back"></a>
+        <span>确认订单</span>
+  </div>
+  <!-- banner -->
+  <section>
+    <div class="myorder">
+    	<a class="address_arrow">
+            <div class="myordernum"><img src="images/address.png"/>小米粥13510872063</div>
+            <div class="myorderlist">浙江省杭州市西湖区凤起东路137号凤起广场A座</div>
+        </a>
+    </div>
+    <div class="captionorder">
+    	<span class="btns">确认订单</span>
+    </div>
+    <div class="product">
+    	<li>
+        	<span class="prolist_tmb"><a href=""><img src="images/pic/pic1.jpg" alt=""></a></span>
+            <span class="prolist_info">
+                <strong class="prolist_title">雅诗兰黛全新金管口红</strong>
+                <span class="prolist_title"><span class="prolist_price">RP200</span><span class="prolist_originalprice">20</span></span>
+                <span class="prolist_title"><span class="prolist_summary">外观红色</span><a class="pro_arrow"></a></span>
+            </span>
+        </li>
+    </div>
+  </section>
+   <!--弹窗遮罩层-->
+   <div class="layer" style="display:none;"></div>
+   <!--规格弹窗start-->
+   <div class="pro_arrowdiv" style="display:none;">
+   		<div class="pro_arrowcon">
+        	<span class="prolist_tmb"><a href=""><img src="images/pic/pic1.jpg" alt=""></a></span>
+            <span class="prolist_info">
+                <span class="prolist_title"><span class="prolist_price">RP200</span><span class="prolist_originalprice">20</span></span>
+                <span class="prolist_title"><span class="prolist_add">配送至:杭州市</span></span>
+                <span class="prolist_title"><span class="prolist_select">已选:“外观红色”</span></span>
+            </span>
+        </div>
+        <div class="captions">
+        	<a class="curt">外光红色</a>
+            <a>外光黑色</a>
+            <a>外光紫色</a>
+            <a>外光红色</a>
+        </div>
+        <div class="caption">
+            <span class="btns pro_fix">确定</span>
+        </div>
+   </div>
+   <!--规格弹窗end-->
+   <!--地址弹窗start>-->
+   <div class="address_arrowdiv" style="display:none;">
+   		<div class="p_relative">
+            <div class="address_arrowhead">
+                <span class="address_close"></span>
+                <span>选择收货地址</span>
+            </div>
+            <div class="address_arrowcon">
+                <div class="address">
+                    <div>小米粥<span class="ml_10">13510872063</span></div>
+                    <div class="myorderlist">浙江省杭州市西湖区凤起东路137号凤起广场A座</div>
+                    <a class="icon-test"><img src="images/icon-test.png"/></a>
+                </div>
+                <div class="address">
+                    <div>画卷<span class="ml_10">13510872063</span></div>
+                    <div class="myorderlist">浙江省杭州市西湖区凤起东路137号凤起广场A座</div>
+                    <a class="icon-test"><img src="images/icon-test.png"/></a>
+                </div>
+                <div class="address">
+                    <div>小米粥<span class="ml_10">13510872063</span></div>
+                    <div class="myorderlist">浙江省杭州市西湖区凤起东路137号凤起广场A座</div>
+                    <a class="icon-test"><img src="images/icon-test.png"/></a>
+                </div>
+                <div class="address">
+                    <div>小米粥<span class="ml_10">13510872063</span></div>
+                    <div class="myorderlist">浙江省杭州市西湖区凤起东路137号凤起广场A座</div>
+                    <a class="icon-test"><img src="images/icon-test.png"/></a>
+                </div>
+            </div>
+            <div class="add_addres"><a href="address收货地址.html">新增收货地址</a></div>
+        </div>
+   </div>
+   <!--地址弹窗end-->
+<script type="text/javascript">
+	$('.captions a').click(function(){
+		$('.captions a').removeClass('curt');
+		$(this).addClass('curt');
+	});
+	$('.pro_arrow').click(function(){
+			$('.layer').show();
+			$('.pro_arrowdiv').show();
+	});
+	$('.pro_fix').click(function(){
+			$('.layer').hide();
+			$('.pro_arrowdiv').hide();
+	});
+	$(window).resize(function(){
+        setlayer();
+    });
+    function setlayer(){
+        var bh=$('body').height();
+        $('.layer').css({
+            'height':bh
+        });
+    };
+	$('.address_arrow').click(function(){
+		  $('.layer').show();
+		  $('.address_arrowdiv').show();
+	});
+	$('.address_close').click(function(){
+		  $('.layer').hide();
+		  $('.address_arrowdiv').hide();
+	});
+	 $("body").click(function (e) {
+			if (!$(e.target).closest(".pro_arrow").length && !$(e.target).closest(".address_arrow").length && !$(e.target).closest(".address_arrowdiv").length && !$(e.target).closest(".pro_arrowdiv").length){
+					$('.layer').hide();
+		  			$('.address_arrowdiv').hide();
+					$('.pro_arrowdiv').hide();
+			}
+		});
+    </script>
+</body>
+</html>

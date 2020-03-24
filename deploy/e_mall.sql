@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50627
 File Encoding         : 65001
 
-Date: 2020-01-15 15:59:12
+Date: 2020-02-04 22:25:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -57,6 +57,65 @@ CREATE TABLE `dic_ad_postion` (
 
 -- ----------------------------
 -- Records of dic_ad_postion
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `dic_attribute`
+-- ----------------------------
+DROP TABLE IF EXISTS `dic_attribute`;
+CREATE TABLE `dic_attribute` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime NOT NULL COMMENT '修改时间',
+  `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `orders` tinyint(4) unsigned DEFAULT NULL COMMENT '排序号',
+  `icon` varchar(255) DEFAULT NULL COMMENT 'icon',
+  `name` varchar(32) NOT NULL COMMENT '品牌名称',
+  `url` varchar(255) DEFAULT NULL COMMENT '跳转url',
+  `value` varchar(255) DEFAULT NULL COMMENT '跳转url',
+  `attribute_catgory_id` bigint(20) NOT NULL COMMENT '属性分类id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of dic_attribute
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `dic_attribute_category`
+-- ----------------------------
+DROP TABLE IF EXISTS `dic_attribute_category`;
+CREATE TABLE `dic_attribute_category` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime NOT NULL COMMENT '修改时间',
+  `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `orders` tinyint(4) unsigned DEFAULT NULL COMMENT '排序号',
+  `name` varchar(32) NOT NULL COMMENT '属性名称',
+  `value` varchar(255) NOT NULL COMMENT '属性值',
+  `is_enabled` tinyint(1) NOT NULL COMMENT '是否可用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of dic_attribute_category
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `dic_brand`
+-- ----------------------------
+DROP TABLE IF EXISTS `dic_brand`;
+CREATE TABLE `dic_brand` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime NOT NULL COMMENT '修改时间',
+  `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `orders` tinyint(4) unsigned DEFAULT NULL COMMENT '排序号',
+  `icon` varchar(255) DEFAULT NULL COMMENT 'icon',
+  `name` varchar(32) NOT NULL COMMENT '品牌名称',
+  `url` varchar(255) DEFAULT NULL COMMENT '跳转url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of dic_brand
 -- ----------------------------
 
 -- ----------------------------

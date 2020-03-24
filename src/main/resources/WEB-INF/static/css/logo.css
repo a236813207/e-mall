@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+.logo{padding:2rem;}
+.logo_absolute{position:absolute; left:0; top:100px; width:100%; text-align:center;}
+.logo_absolute h3{font-size:30px;}
+.logo_absolute p{font-size:0.8rem;}
+.table{width:100%;}
+.bottom_b{border-bottom:1px solid #999; padding:1rem; position:relative;}
+.barcodeimg{width:60px; height:1.5rem; border:1px solid #999; display:inline-block; position:absolute; right:0;}
+.Obtain{color:#F38646; border:1px solid #999; border-radius:0.5rem; padding:0.2rem 0.5rem; background:#fff; width:60px; position:absolute; right:0;}
+.longinbtn{width:100%; display:block; padding:0.5rem; margin-top:3rem; text-align:center; font-size:1rem; background:#F38646; color:#fff; border-radius:8rem; border:none;}
+.logotip{font-size:0.8rem; line-height:2rem;}
+.logotip img{margin-top:0.5rem;margin-right:0.5rem;}

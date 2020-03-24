@@ -14,8 +14,8 @@ public enum ErrorCode implements BizCodeEnum<ErrorCode> {
      */
     PARAM_ERROR(1,"接口参数错误"),
     OK(2,"接口调用成功"),
-    PERMISSION_EXPIRED(3,"权限授权过期"),
-    PERMISSION_DENIED(4,"接口权限不足"),
+    PERMISSION_EXPIRED(401,"权限授权过期"),
+    PERMISSION_DENIED(403,"接口权限不足"),
     FAIL(5,"服务器繁忙"),
     DATE_NULL(6,"数据异常"),
     AUTH_FAIL(7,"账号密码错误"),

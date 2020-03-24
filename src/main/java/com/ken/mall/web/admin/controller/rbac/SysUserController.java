@@ -12,10 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.HashMap;
@@ -28,21 +25,21 @@ import java.util.stream.Collectors;
  * @date 2019/7/28
  * @description
  */
+@RequestMapping("/admin")
 @Controller
-@RequestMapping("/admin/sysuser")
 @Api(value = "系统用户管理")
 public class SysUserController {
 
     private SysUserService sysUserService;
 
-    @GetMapping("")
+    @GetMapping("/sysuser")
     @ApiOperation(value = "系统用户管理页面")
     public String index() {
-        return "/rbac/sysuser";
+        return "/admin/rbac/sysuser";
     }
 
 
-    @GetMapping("/list")
+    @PostMapping("/sysuser")
     @ApiOperation(value = "获取用户列表")
     @ResponseBody
     public PageBo list(@RequestParam(required = false) String userName,
@@ -54,8 +51,7 @@ public class SysUserController {
                 .map(item -> {
                     SysUserResp resp = this.findAccountRoles(item);
                     return resp;
-                })
-                .collect(Collectors.toList());
+                }).collect(Collectors.toList());
         return new PageBo<>(resps, result.getRecordsTotal(), page);
     }
 

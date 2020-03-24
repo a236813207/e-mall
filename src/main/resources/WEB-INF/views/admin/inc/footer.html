@@ -1,0 +1,58 @@
+<!-- 全局js -->
+<script src="${ctxPath}/js/jquery.min.js?v=2.1.4"></script>
+<script src="${ctxPath}/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- Data Tables -->
+<script src="${ctxPath}/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="${ctxPath}/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script src="${ctxPath}/js/plugins/dataTables/dataTables.fixedColumns.min.js"></script>
+<!-- layer弹出层 -->
+<script type="text/javascript" src="${ctxPath}/js/plugins/layer/mobile/layer.js?v=2.0.0"></script>
+<script type="text/javascript" src="${ctxPath}/js/plugins/layer/layer.js?v=3.1.1"></script>
+<!-- 侧边栏插件 -->
+<script src="${ctxPath}/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<!-- 滚动条插件 -->
+<script src="${ctxPath}/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="${ctxPath}/js/plugins/layui/layui.js?v=2.4.5"></script>
+
+<!-- 自定义js -->
+<script src="${ctxPath}/js/hplus.js?v=4.1.0" type="text/javascript"></script>
+<script src="${ctxPath}/js/contabs.js" type="text/javascript"></script>
+<script src="${ctxPath}/js/content.js?v=1.0.0"></script>
+<!-- 第三方插件 加载网页进度条-->
+<script src="${ctxPath}/js/plugins/pace/pace.min.js"></script>
+<script src="${ctxPath}/js/common.js"></script>
+
+<script type="text/javascript" src="${ctxPath}/js/plugins/validform/js/validform.js"></script>
+
+<script>
+    //全局处理ajax返回错误的方法
+    function openMsgByStatus(data){
+        var code = data.code;
+        if(code=="401"){
+            layer.open({
+                content: "登录过期，请重新登录！",
+                btn: '确定',
+                shadeClose: false,
+                yes: function(){
+                    parent.location.href="${ctxPath}/admin/login";
+                }
+            });
+        }else if(code=="403"){
+            layer.open({
+                content: "您无此权限！",
+                btn: '我知道了'
+            });
+        }else if(code=="500"){
+            layer.open({
+                content: '系统繁忙！',
+                skin: 'msg',
+                time: 3 //2秒后自动关闭
+            });
+        }else{
+            layer.open({
+                content: data.msg,
+                btn: '我知道了'
+            });
+        }
+    }
+</script>

@@ -19,8 +19,8 @@ import java.util.Date;
 @Setter
 public class Ad extends AbstractOrderEntity {
 
-    @Column(name = "ad_postion_id", columnDefinition="bigint(20) not null comment '广告位置id'")
-    private Long adPostionId;
+    @Column(name = "ad_position_id", columnDefinition="int(4) not null comment '广告位置id'")
+    private Integer adPositionId;
 
     @Column(name = "type", columnDefinition="varchar(32) not null comment '广告类型'")
     @Enumerated(EnumType.STRING)

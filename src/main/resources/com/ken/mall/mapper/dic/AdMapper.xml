@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ken.mall.mapper.dic.AdMapper">
+    
+    <select id="findAdsByAdPositionId" resultType="com.ken.mall.entity.dic.Ad">
+        select * from dic_ad
+        <where>
+            <if test="adPositionId != null">
+                and ad_position_id = #{adPositionId}
+            </if>
+            and is_enabled=1 and start_time &lt; now() and end_time &gt; now() order by orders
+        </where>
+    </select>
+
+</mapper>

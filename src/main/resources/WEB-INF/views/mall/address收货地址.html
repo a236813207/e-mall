@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="keywords" content="" />
+    <meta name="description" content=" " />
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<title>收货地址</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/idangerous.swiper.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/idangerous.swiper-2.1.min.js"></script>
+    <script type="text/javascript" src="../../static/js/index.js"></script>
+</head>
+
+<body>
+    <div class="header">
+  		<a class="idx_back"></a>
+        <span>收货地址</span>
+    </div>
+    <!-- banner -->
+    <div class="addressdiv">
+        <div class="address">
+            <div>画卷<span class="ml_10">13510872063</span></div>
+            <div class="myorderlist">浙江省杭州市西湖区凤起东路137号凤起广场A座</div>
+            <div class="p_relative mt_10">
+            	<a class="check">默认地址</a>
+                <span class="delete_address">删除</span>
+                <a href="editaddress编辑收货地址.html"><span class="edit_address">编辑</span></a>
+            </div>
+        </div>
+         <div class="address">
+            <div>小米粥<span class="ml_10">13510872063</span></div>
+            <div class="myorderlist">浙江省杭州市西湖区凤起东路137号凤起广场A座</div>
+            <div class="p_relative mt_10">
+            	<a class="check currt">默认地址</a>
+                <span class="delete_address">删除</span>
+                <a href="editaddress编辑收货地址.html"><span class="edit_address">编辑</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="adds">
+    	<a class="col_white">新增收货地址</a>	
+    </div>
+   <!--地址弹窗end-->
+<script type="text/javascript">
+	$('.address .check').click(function(){
+		  $('.address .check').removeClass('currt');
+		  $(this).addClass('currt');
+	});
+</script>
+</body>
+</html>

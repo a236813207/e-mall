@@ -40,8 +40,8 @@ public class RushPurchaseLog extends BaseEntity {
     @Column(name = "sesame", columnDefinition="int(4) default null comment '消耗芝麻数'")
     private Integer sesame;
 
-    @Column(name = "limit", columnDefinition="int(2) default null comment '限制次数'")
-    private Integer limit;
+    @Column(name = "limits", columnDefinition="int(2) default null comment '限制次数'")
+    private Integer limits;
 
     @Column(name = "required_participants", columnDefinition="int(4) not null comment '需参与总人数'")
     private Integer requiredParticipants;

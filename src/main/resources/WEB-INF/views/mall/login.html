@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="keywords" content="" />
+    <meta name="description" content=" " />
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<title>登录</title>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/css/idangerous.swiper.css" />
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/css/logo.css" />
+</head>
+
+<body>
+	<div class="p_relative">
+    	<div class="logo_absolute">
+        	<h3>芝麻购物</h3>
+        	<p>Sesame shopping</p>
+        </div>
+    	<img src="${ctxPath}/images/pic/loginbg.png"/>
+    </div>
+    <div class="logo">
+    	<form id="logos">
+            <div class="table">
+                <div class="bottom_b">
+                    <input id="phone" name="phone" placeholder="请输入手机号码" value="" type="text" required oninvalid="setCustomValidity('请输入短信验证码')"/>
+                    <span></span>
+                </div>
+                <div class="bottom_b">
+                    <input id="validCode" name="validCode" placeholder="请输入图形码" value="" type="text" required oninvalid="setCustomValidity('请输入短信验证码')"/>
+                    <span class="barcodeimg"><img title="点击更换图片" id="verImg" src="${ctxPath}/mall/validcode?Math.random();" onClick="changeImg();"/></span>
+                </div>
+                <div class="bottom_b">
+                    <input id="smsCode" name="smsCode" placeholder="请输入短信验证码" value="" type="text" required oninvalid="setCustomValidity('请输入短信验证码')"/>
+                    <input class="Obtain" type="button" onclick="getSmsCode()" value="获取"/>
+                </div>
+                <div class="logotip">
+                    <img class="fl" src="${ctxPath}/images/icon2.png"/>
+                    用户协议：<a style="color:#1E8FD9">Sesame shopping协议</a>
+                </div>
+            </div>
+        </form>
+        <div class="caption">
+            <input class="longinbtn" value="登录" onclick="submit()" type="button"/>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="${ctxPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/js/idangerous.swiper-2.1.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/js/index.js"></script>
+    <script type="text/javascript" src="${ctxPath}/js/plugins/layer/layer.js"></script>
+    <script type="text/javascript" src="${ctxPath}/js/ajaxutils.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+
+
+        });
+        function submit() {
+            var phone = $("#phone").val();
+            var validCode = $("#validCode").val();
+            var smsCode = $("#smsCode").val();
+            var oForm = {
+                urls:'${ctxPath}/mall/login',
+                method:'post',
+                data: {phone: phone, validCode: validCode, smsCode: smsCode},
+                dataType:'json',
+                async:true
+            };
+            $packageAjax(oForm,function(data){
+                if (data.code == 2) {
+                    window.location.href = "${ctxPath}/mall/index";
+                }
+            })
+        }
+
+        function getSmsCode() {
+            var phone = $("#phone").val();
+            var validCode = $("#validCode").val();
+            var oCode = {
+                urls:'${ctxPath}/mall/sendSms',
+                data:{phone: phone, validCode: validCode},
+                method:'post',
+                dataType:'json',
+                async:true
+            };
+            $packageAjax(oCode,function(data){
+
+            })
+        }
+
+        function changeImg() {
+            var img = document.getElementById("verImg");
+            img.src = "${ctxPath}/mall/validcode?" + Math.random();
+        }
+    </script>
+</body>
+</html>
