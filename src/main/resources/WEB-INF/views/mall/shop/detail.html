@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="" />
+    <meta name="description" content=" " />
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>产品详情</title>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/css/idangerous.swiper.css" />
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/css/public.css" />
+</head>
+
+<body>
+<div class="header">
+    <a href="shop.html" class="idx_back"></a>
+    <span>PRODUCT</span>
+</div>
+<!-- banner -->
+<section>
+    <div class="banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <%if(has(detail)&&detail.carousels.~size>0){
+                for(carousel in detail.carousels){
+                %>
+                <div class="swiper-slide"><img src="${carousel.imgUrl!}"/></div>
+                <%}}%>
+            </div>
+        </div>
+        <div class="pagination"></div>
+    </div>
+    <div class="goods">
+        <span class="prolist_info">
+            <strong class="prolist_title">${detail.goodsName!}</strong>
+            <span class="prolist_title"><span class="prolist_price">${detail.priceUnit!}${detail.salePrice!}</span></span>
+            <span class="prolist_title"><span class="prolist_originalprice">${detail.sesamePrice!}</span></span>
+            <span></span>
+        </span>
+    </div>
+    <div class="goods_line"></div>
+    <div class="goods">
+        <div class="goods_specs">
+            <div class="goods_specs_title">规格</div>
+            <div class="captions">
+                <%if(has(detail)&&detail.specifications.~size>0){
+                    for(specification in detail.specifications){
+                %>
+                <a <%if(specificationLP.first){%>class="curt"<%}%>>${specification.value!}</a>
+                <%}}%>
+            </div>
+        </div>
+        <div class="goods_P">
+            <div class="goods_P_title"><span></span>商品详情<span></span></div>
+            <div class="mt_10">
+                <%if(detail.goodsDesc!=null && detail.goodsDesc!=''){
+                    var descs = strutil.split(detail.goodsDesc,";");
+                    for(var i=0;i<descs.~size;i++){
+                %>
+                <img width="100%" src="${descs[i]!}"/>
+                <%}}%>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- banner -->
+<script type="text/javascript" src="${ctxPath}/js/jquery.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/js/idangerous.swiper-2.1.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/js/index.js"></script>
+<script type="text/javascript">
+    $('.captions a').click(function(){
+        $('.captions a').removeClass('curt');
+        $(this).addClass('curt');
+    });
+</script>
+</body>
+</html>

@@ -24,13 +24,13 @@ import javax.persistence.Table;
 @Setter
 public class Member extends BaseEntity {
 
-    @Column(name = "account_name", columnDefinition="varchar(32) not null comment '会员名称'")
+    @Column(name = "account_name", columnDefinition="varchar(32) default null comment '会员名称'")
     private String accountName;
 
-    @Column(name = "password", columnDefinition="varchar(128) not null comment '密码'")
+    @Column(name = "password", columnDefinition="varchar(128) default null comment '密码'")
     private String password;
 
-    @Column(name = "salt", columnDefinition="varchar(128) not null comment '密码盐值'")
+    @Column(name = "salt", columnDefinition="varchar(128) default null comment '密码盐值'")
     private String salt;
 
     @Column(name = "mobile", columnDefinition="varchar(16) default null comment '手机号'")

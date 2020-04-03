@@ -8,6 +8,8 @@
     <meta name="description" content="">
 
     <%include("../inc/header.html"){}%>
+    <link href="${ctxPath}/css/plugins/datepicker/datepicker3.css" rel="stylesheet"/>
+    <link href="${ctxPath}/js/plugins/kindeditor/themes/default/default.css" rel="stylesheet"/>
 </head>
 
 <body class="gray-bg">
@@ -15,74 +17,103 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>普通代理管理 </h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                        </div>
-                    </div>
                     <div class="ibox-content" style="overflow: hidden;">
-                    	<div class="form-inline">
-	                        <div class="input-group m-b">
-	                        	<span class="input-group-btn"><button type="button" onclick="searchAd()" class="btn btn-primary">搜</button></span>
-                                <input type="text" placeholder="输入代理ID查询" id="proxyId" class="form-control">
-                             </div>
-	                    </div>
                         <a class="btn btn-primary" data-toggle="modal" data-target="#addAd">添加广告</a>
 	                    <div class="modal inmodal" id="addAd" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog" style="width:300px; margin:0,auto;">
-                                <div class="modal-content animated bounceInLeft" style="width:300px; margin:0,auto;">
+                            <div class="modal-dialog" style="width:720px; margin:0 auto;">
+                                <div class="modal-content animated bounceInLeft" style="width:720px; margin:0 auto;">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">
                                         	<span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
                                         </button>
                                         <h3 class="modal-title">添加广告</h3>
                                      </div>
-                                     <form id="form1" role="form" action="${ctxPath}/admin/add">
-	                                     <div class="modal-body">
-								                <div class="form-group">
-								                    <input type="text" class="form-control" placeholder="广告名称" required="required" id="name"
-								                    	name="name" datatype="*">
-						                    		<span class="Validform_checktip"></span>
-								                </div>
-								                <div class="form-group">
-								                    <input type="password" class="form-control" placeholder="登录密码" required="required" name="password"
-								                    	datatype="*" size="20" maxlength="20" >
-							                    	<span class="Validform_checktip"></span>
-								                </div>
-								                <div class="form-group">
-								                    <input type="text" class="form-control" placeholder="上级代理ID" id="parentProxyId" name="parentProxyId" 
-								                    	datatype="n" errormsg="格式错误！" size="20" maxlength="20">
-							                    	<span class="Validform_checktip"></span>
-								                </div>
-								                <div class="form-group">
-								                    <input type="text" class="form-control" placeholder="推荐人ID" name="inviteProxyId" 
-								                    	datatype="n" ignore="ignore" errormsg="格式错误！" size="20" maxlength="20">
-							                    	<span class="Validform_checktip"></span>
-								                </div>
-												<div class="form-group">
-								                    <input type="text" class="form-control" placeholder="真实姓名" name="realname" 
-								                    	datatype="*" size="20" maxlength="20">
-							                    	<span class="Validform_checktip"></span>
-								                </div>
-								                <div class="form-group">
-								                    <input type="text" class="form-control" placeholder="联系方式手机号" name="mobile" 
-								                    	datatype="Mobile" errormsg="手机号格式错误！" size="20" maxlength="20">
-							                    	<span class="Validform_checktip"></span>
-								                </div>
-								            	<div class="form-group">
-								                    <input type="text" class="form-control" placeholder="绑定游戏ID" name="userId" 
-								                    	datatype="n" ignore="ignore" errormsg="格式错误！" size="20" maxlength="20">
-							                    	<span class="Validform_checktip"></span>
-								                </div>
-	                                     </div>
-	                                     <div class="modal-footer">
-	                                         <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-	                                         <button type="submit" class="btn btn-primary">保存</button>
-	                                     </div>
-                                     </form>
+                                    <form id="form1" class="form-horizontal" role="form" action="${ctxPath}/admin/add">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">广告名称</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" placeholder="广告名称" required="required" id="name"
+                                                           name="name" datatype="*">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">广告类型</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" name="type">
+                                                        <option>图片</option>
+                                                        <option>视频</option>
+                                                        <option>文字</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">url</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" placeholder="url" name="url" id="url">
+                                                    <input id="uploadButton" type="hidden" value="上传"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">广告位置</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" name="adPositionId">
+                                                        <option>首页轮播图</option>
+                                                        <option>视频</option>
+                                                        <option>文字</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">广告内容</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" placeholder="广告内容" name="content">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">跳转链接</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" placeholder="跳转链接" name="link">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">开始时间</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control datepicker" placeholder="开始时间" name="startTime">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">结束时间</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control datepicker" placeholder="结束时间" name="endTime">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">排序号</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" placeholder="排序号" required="required"
+                                                           name="name" datatype="Int">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">是否有效</label>
+                                                <div class="col-sm-9">
+                                                    <div class="radio radio-info radio-inline">
+                                                        <input type="radio" id="inlineRadio1" value="option1" name="isEnabled" checked="">
+                                                        <label for="inlineRadio1"> 是 </label>
+                                                    </div>
+                                                    <div class="radio radio-inline">
+                                                        <input type="radio" id="inlineRadio2" value="option2" name="isEnabled">
+                                                        <label for="inlineRadio2"> 否 </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                            <button type="submit" class="btn btn-primary">保存</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -115,10 +146,38 @@
     </div>
 
     <%include("../inc/footer.html"){}%>
-	
+
+    <script type="text/javascript" src="${ctxPath}/js/plugins/kindeditor/kindeditor.js"></script>
+    <script type="text/javascript" src="${ctxPath}/js/plugins/datepicker/bootstrap-datepicker.js"></script>
     <!-- Page-Level Scripts -->
     <script>
     	$(document).ready(function() {
+            $('.datepicker').datepicker({ });
+
+            KindEditor.ready(function(K) {
+                var uploadbutton = K.uploadbutton({
+                    button: $('#uploadButton')[0],
+                    fieldName: 'imgFile',
+                    url: '${ctxPath}/admin/product/upload?type=1',
+                    afterUpload: function (data) {
+                        if (data.error === 0) {
+                            layer.alert("上传成功！");
+                            //var url = K.formatUrl(data.url, 'absolute');
+                            var url = data.url;
+                            $("#id").val(url);
+                        } else {
+                            layer.alert(data.message);
+                        }
+                    },
+                    afterError: function (str) {
+                        layer.alert('系统繁忙！');
+                    }
+                });
+                uploadbutton.fileBox.change(function (e) {
+                    uploadbutton.submit();
+                });
+            });
+
     		$.fn.dataTable.ext.errMode = "throw";
 
             datatable = $('#dataTables').DataTable({
@@ -225,7 +284,9 @@
                   }  
                 },  
             });
-            
+
+
+
             $("#form1").Validform({
 				tiptype:function(msg,o,cssctl){
 					if(!o.obj.is('form')){

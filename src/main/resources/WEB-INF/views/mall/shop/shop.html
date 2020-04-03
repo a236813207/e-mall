@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="keywords" content="" />
     <meta name="description" content=" " />
     <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -9,64 +9,111 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-	<title>SHOP</title>
-    <link rel="stylesheet" type="text/css" href="../../../static/css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="../../../static/css/idangerous.swiper.css" />
-    <link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../../../static/js/idangerous.swiper-2.1.min.js"></script>
-    <script type="text/javascript" src="../../../static/js/index.js"></script>
+    <title>SHOP</title>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/css/idangerous.swiper.css" />
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/css/public.css" />
 </head>
 
 <body>
-  <div class="header col_bg">
-        <span class="col_white">SHOP</span>
-        <a href="" class="shop"></a>
-  </div>
-  <!-- banner -->
-  <section>
+<div class="header col_bg">
+    <span class="col_white">SHOP</span>
+    <a href="" class="shop"></a>
+</div>
+<!-- banner -->
+<section>
     <div class="masonry">
-    	<div class="item">
-        	<a>
-            	<div><img width="320" src="../images/pic/shop_04.jpg"/></div>
-                <div>崇高之心耳钉</div>
-                <div>RP20,000</div>
-                <div class="sesame">20</div>
+        <%if(has(goods)&&goods.data.~size>0){
+            for(good in goods.data){
+        %>
+        <div class="item">
+            <a href="${ctxPath}/mall/shop/${good.id!}">
+                <div><img width="320" src="${good.primaryPicUrl!}"/></div>
+                <div class="items">
+                    <div class="mb_10">${good.goodsName!}</div>
+                    <div class="col_orange">${good.priceUnit!}${good.salePrice!}</div>
+                    <div class="sesame">${good.sesamePrice!}</div>
+                </div>
+            </a>
+        </div>
+        <%  }
+        }%>
+        <div class="item">
+            <a href="goodslist商品详情.html">
+                <div><img width="320" height="200" src="images/pic/shop_04.jpg"/></div>
+                <div class="items">
+                    <div class="mb_10">崇高之心耳钉</div>
+                    <div class="col_orange">RP20,000</div>
+                    <div class="sesame">20</div>
+                </div>
             </a>
         </div>
         <div class="item">
-        	<a>
-            	<div><img width="320" src="../images/pic/shop_03.jpg"/></div>
-                <div>崇高之心耳钉</div>
-                <div>RP20,000</div>
-                <div class="sesame">20</div>
+            <a href="goodslist商品详情.html">
+                <div><img width="320" height="150" src="images/pic/shop_03.jpg"/></div>
+                <div class="items">
+                    <div class="mb_10">崇高之心耳钉</div>
+                    <div class="col_orange">RP20,000</div>
+                    <div class="sesame">20</div>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="goodslist商品详情.html">
+                <div><img width="320" height="158" src="images/pic/shop_04.jpg"/></div>
+                <div class="items">
+                    <div class="mb_10">崇高之心耳钉</div>
+                    <div class="col_orange">RP20,000</div>
+                    <div class="sesame">20</div>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="goodslist商品详情.html">
+                <div><img width="320" height="333" src="images/pic/shop_03.jpg"/></div>
+                <div class="items">
+                    <div class="mb_10">崇高之心耳钉</div>
+                    <div class="col_orange">RP20,000</div>
+                    <div class="sesame">20</div>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="goodslist商品详情.html">
+                <div><img width="320" height="222" src="images/pic/shop_04.jpg"/></div>
+                <div class="items">
+                    <div class="mb_10">崇高之心耳钉</div>
+                    <div class="col_orange">RP20,000</div>
+                    <div class="sesame">20</div>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="goodslist商品详情.html">
+                <div><img width="320" height="123" src="images/pic/shop_03.jpg"/></div>
+                <div class="items">
+                    <div class="mb_10">崇高之心耳钉</div>
+                    <div class="col_orange">RP20,000</div>
+                    <div class="sesame">20</div>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a>
+                <div><img width="320" height="160" src="images/pic/shop_04.jpg"/></div>
+                <div class="items">
+                    <div class="mb_10">崇高之心耳钉</div>
+                    <div class="col_orange">RP20,000</div>
+                    <div class="sesame">20</div>
+                </div>
             </a>
         </div>
     </div>
-  </section>
-  <!-- banner -->
-  <div style="height:3.125rem;"></div>
-  <nav class="mainNav fixed">
-     <ul>
-          <li>
-              <a href="../index.html">
-                  <i class="icon-home"></i><span>home</span>
-              </a>
-            </li>
-            <li class="cur">
-                <a href="../shop/shop.html">
-                  <i class="icon-shop"></i>
-                  <span>shop</span>
-                </a>
-            </li>
-            <li>
-              <a href="../user/me.html">
-                  <i class="icon-me"></i>
-                  <span>me</span>
-              </a>
-            </li>
-        </ul>
-     </nav>
+</section>
+<%include("../inc/footer.html"){}%>
+<script type="text/javascript" src="${ctxPath}/js/jquery.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/js/idangerous.swiper-2.1.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/js/index.js"></script>
 <script type="text/javascript">
 
 </script>

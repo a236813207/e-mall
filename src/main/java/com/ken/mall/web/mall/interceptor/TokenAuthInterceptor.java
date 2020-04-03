@@ -1,15 +1,7 @@
 package com.ken.mall.web.mall.interceptor;
 
-import com.auth0.jwt.interfaces.Claim;
-import com.ken.mall.constant.MallConstants;
-import com.ken.mall.exception.BizException;
-import com.ken.mall.exception.codes.BizCodeFace;
-import com.ken.mall.exception.codes.ErrorCode;
-import com.ken.mall.service.session.Token;
 import com.ken.mall.service.session.TokenService;
-import com.ken.mall.web.mall.auth.JWTHelper;
 import com.ken.mall.web.mall.auth.TokenAuth;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.method.HandlerMethod;
@@ -18,7 +10,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
-import java.util.Map;
 
 /**
  * @author Ken
@@ -28,11 +19,10 @@ import java.util.Map;
 public class TokenAuthInterceptor extends HandlerInterceptorAdapter {
 
     private TokenService tokenService;
-    //private MemberService memberService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (!request.getRequestURI().startsWith("/api")) {
+        if (!request.getRequestURI().startsWith("/mall")) {
             return true;
         }
         if (!(handler instanceof HandlerMethod)) {
@@ -50,7 +40,7 @@ public class TokenAuthInterceptor extends HandlerInterceptorAdapter {
         }
         //获取token
         if (auth.require()) {
-            String tokenStr = request.getHeader("x-access-token");
+            /*String tokenStr = request.getHeader("x-access-token");
             if (StringUtils.isEmpty(tokenStr)) {
                 tokenStr = request.getParameter("access_token");
             }
@@ -67,7 +57,11 @@ public class TokenAuthInterceptor extends HandlerInterceptorAdapter {
                 throw new BizException(BizCodeFace.createBizCode(ErrorCode.PERMISSION_DENIED));
             }
             request.setAttribute(MallConstants.CURRENT_USER, token);
-            this.tokenService.delayToken(key);
+            this.tokenService.delayToken(key);*/
+
+
+
+
         }
         return true;
     }

@@ -25,10 +25,10 @@ public class Category extends AbstractOrderEntity {
     @Column(name = "name", columnDefinition="varchar(32) not null comment '分类名称'")
     private String name;
 
-    @Column(name = "parent_id", columnDefinition="bigint(20) not null comment '父类id'")
+    @Column(name = "parent_id", columnDefinition="bigint(20) default null comment '父类id'")
     private Long parentId;
 
-    @Column(name = "parent_ids", columnDefinition="varchar(512) not null comment '父类id集合'")
+    @Column(name = "parent_ids", columnDefinition="varchar(512) default null comment '父类id集合'")
     private String parentIds;
 
     @Column(name = "url", columnDefinition="varchar(255) default null comment '跳转url'")

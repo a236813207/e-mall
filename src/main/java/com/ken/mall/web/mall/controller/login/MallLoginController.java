@@ -1,10 +1,10 @@
 package com.ken.mall.web.mall.controller.login;
 
 import com.ken.mall.constant.MallConstants;
+import com.ken.mall.entity.member.Member;
 import com.ken.mall.exception.codes.ErrorCode;
-import com.ken.mall.service.session.TokenService;
+import com.ken.mall.service.member.MemberService;
 import com.ken.mall.utils.CaptchaRenderUtils;
-import com.ken.mall.utils.NumberUtils;
 import com.ken.mall.web.bind.response.ResBody;
 import com.ken.mall.web.mall.auth.TokenAuth;
 import io.swagger.annotations.Api;
@@ -36,7 +36,8 @@ public class MallLoginController {
 
     private final static Logger logger = LoggerFactory.getLogger(MallLoginController.class);
 
-    private TokenService tokenService;
+    @Autowired
+    private MemberService memberService;
 
     @GetMapping("/login")
     public String login(@ApiIgnore HttpServletRequest request) {
@@ -72,8 +73,10 @@ public class MallLoginController {
         if (StringUtils.isEmpty(smsCode) || !smsCode.equals(storeSmsCode)) {
             return ResBody.failure("手机验证码错误");
         }
+
         request.getSession().removeAttribute(MallConstants.SESSION_SMSCODE);
-        request.getSession().setAttribute(MallConstants.SESSION_PHONE, phone);
+        Member member = this.memberService.loginByPhone(phone);
+        request.getSession().setAttribute(MallConstants.SESSION_MEMBER, member);
 
         return ResBody.success();
     }
@@ -86,7 +89,8 @@ public class MallLoginController {
         if (ErrorCode.OK.getCode() != resBody.getCode()) {
             return resBody;
         }
-        String smsCode = NumberUtils.getCode(4);
+        //String smsCode = NumberUtils.getCode(4);
+        String smsCode = "1234";
         request.getSession().setAttribute("smsCode", smsCode);
         //todo 发送手机短信
         return ResBody.success().data(smsCode).message("发送成功");
@@ -112,8 +116,4 @@ public class MallLoginController {
         return ResBody.success().data("123456");
     }
 
-    @Autowired
-    public void setTokenService(TokenService tokenService) {
-        this.tokenService = tokenService;
-    }
 }

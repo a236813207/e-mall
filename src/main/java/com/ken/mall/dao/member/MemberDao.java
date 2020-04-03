@@ -9,4 +9,6 @@ import com.ken.mall.entity.member.Member;
  * @description
  */
 public interface MemberDao extends GenericRepository<Member, Long> {
+
+    Member findTopByMobile(String mobile);
 }

@@ -20,4 +20,6 @@ public class MallConstants {
 	public static final String SESSION_SMSCODE = "smsCode";
 
 	public static final String SESSION_PHONE = "login_phone";
+
+	public static final String SESSION_MEMBER = "login_member";
 }
